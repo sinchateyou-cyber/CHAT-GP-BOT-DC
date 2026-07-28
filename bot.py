@@ -33,33 +33,6 @@ async def on_ready():
     )
 
 
-async def conectar_lavalink():
-
-    try:
-        nodes = [
-            wavelink.Node(
-                uri=os.getenv(
-                    "LAVALINK_URI",
-                    "http://localhost:2333"
-                ),
-                password=os.getenv(
-                    "LAVALINK_PASSWORD",
-                    "youshallnotpass"
-                )
-            )
-        ]
-
-        await wavelink.Pool.connect(
-            nodes=nodes,
-            client=bot
-        )
-
-        print("✅ Conectado a Lavalink")
-
-    except Exception as error:
-        print(f"❌ Error conectando a Lavalink: {error}")
-
-
 async def cargar_extensiones():
 
     extensiones = [
