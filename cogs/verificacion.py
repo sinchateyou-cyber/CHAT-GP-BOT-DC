@@ -139,10 +139,10 @@ class Verificacion(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
     # ========================================================
-    # COMANDO !VERIFICACION
+    # COMANDO !VERIFICION
     # ========================================================
     @commands.command(
-        name="verificacion"
+        name="verify"
     )
     @commands.has_permissions(
         administrator=True
