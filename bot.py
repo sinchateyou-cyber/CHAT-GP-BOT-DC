@@ -43,7 +43,8 @@ async def cargar_extensiones():
         "cogs.verificacion",
         "cogs.utilidades",
         "cogs.antispam",
-        "cogs.status"
+        "cogs.status",
+        "cogs.music"
     ]
 
     for extension in extensiones:
