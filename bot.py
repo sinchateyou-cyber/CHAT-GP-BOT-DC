@@ -78,7 +78,6 @@ async def cargar_extensiones():
         "cogs.utilidades",
         "cogs.canales",
         "cogs.say",
-        "cogs.owner",
         "cogs.nick",
         # Roles
         "cogs.roles",
