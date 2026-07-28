@@ -10,7 +10,7 @@ class Utilidades(commands.Cog):
     # PING
     # =========================
 
-    @commands.command()
+    @commands.name command(ping)
     async def ping(self, ctx):
 
         ms = round(
@@ -25,7 +25,7 @@ class Utilidades(commands.Cog):
     # AVATAR
     # =========================
 
-    @commands.command()
+    @commands.name command(avatar)
     async def avatar(
         self,
         ctx,
@@ -50,7 +50,7 @@ class Utilidades(commands.Cog):
     # USERINFO
     # =========================
 
-    @commands.command()
+    @commands.name command(userinfo)
     async def userinfo(
         self,
         ctx,
@@ -115,7 +115,7 @@ class Utilidades(commands.Cog):
     # SERVERINFO
     # =========================
 
-    @commands.command()
+    @commands.name command(serverinfo)
     async def serverinfo(self, ctx):
 
         servidor = ctx.guild
@@ -197,7 +197,6 @@ class Utilidades(commands.Cog):
             ),
             inline=False
         )
-
         embed.add_field(
             name="💤 AFK",
             value=(
