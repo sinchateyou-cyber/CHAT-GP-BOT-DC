@@ -39,7 +39,6 @@ async def cargar_extensiones():
         "cogs.moderacion",
         "cogs.afk",
         "cogs.bienvenida",
-        "cogs.roles",
         "cogs.logs",
         "cogs.tickets",
         "cogs.verificacion",
