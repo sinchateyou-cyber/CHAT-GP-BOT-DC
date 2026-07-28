@@ -44,7 +44,8 @@ async def cargar_extensiones():
         "cogs.utilidades",
         "cogs.antispam",
         "cogs.status",
-        "cogs.roles"
+        "cogs.roles",
+        "cogs.invite"
     ]
 
     for extension in extensiones:
