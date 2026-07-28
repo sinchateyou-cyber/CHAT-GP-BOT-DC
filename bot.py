@@ -26,7 +26,7 @@ async def on_ready():
 
     await bot.change_presence(
         activity=discord.Seeing(
-            name="!ayuda $$$"
+            name="s!ayuda $$$"
         )
     )
 
