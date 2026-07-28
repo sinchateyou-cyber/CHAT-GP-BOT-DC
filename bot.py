@@ -27,8 +27,13 @@ async def on_ready():
     print("=" * 40)
 
     await bot.change_presence(
-        activity=discord.Seeing(
-            name="s!ayuda $$$"
+    activity=discord.Activity(
+        type=discord.ActivityType.listening,
+        name="s!ayuda"
+    )
+)
+    )
+)
         )
     )
 
