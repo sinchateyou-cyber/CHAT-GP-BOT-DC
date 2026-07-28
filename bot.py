@@ -2,7 +2,7 @@ import os
 import asyncio
 import discord
 from discord.ext import commands
-import wavelink
+
 
 TOKEN = os.getenv("DISCORD_TOKEN")
 
