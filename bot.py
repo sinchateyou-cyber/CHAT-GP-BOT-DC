@@ -25,8 +25,8 @@ async def on_ready():
     print("=" * 40)
 
     await bot.change_presence(
-        activity=discord.Game(
-            name="!ayuda | Moderando"
+        activity=discord.Seeing(
+            name="!ayuda $$$"
         )
     )
 
@@ -41,7 +41,8 @@ async def cargar_extensiones():
         "cogs.logs",
         "cogs.tickets",
         "cogs.verificacion",
-        "cogs.utilidades"
+        "cogs.utilidades",
+        "cogs.music"
     ]
 
     for extension in extensiones:
