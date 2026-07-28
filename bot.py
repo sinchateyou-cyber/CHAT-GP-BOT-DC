@@ -69,6 +69,7 @@ async def cargar_extensiones():
         "cogs.antispam",
         # Utilidades
         "cogs.utilidades",
+        "cogs.canales",
         "cogs.say",
         "cogs.owner",
         "cogs.nick",
