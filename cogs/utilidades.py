@@ -180,26 +180,9 @@ class Utilidades(commands.Cog):
 
         await ctx.send(
             embed=embed
-        )
+    
 
-    # =========================
-    # AYUDA
-    # =========================
-
-    @commands.command(
-        name="ayuda",
-        aliases=["help", "comandos"]
-    )
-    async def ayuda(self, ctx):
-
-        embed = discord.Embed(
-            title="🤖 Centro de comandos",
-            description=(
-                "Estos son los comandos disponibles "
-                "en el servidor."
-            )
-        )
-
+    
         embed.add_field(
             name="🛡️ Moderación",
             value=(
