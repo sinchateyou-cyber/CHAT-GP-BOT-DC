@@ -47,6 +47,7 @@ async def cargar_extensiones():
         "cogs.roles",
         "cogs.invite",
         "cogs.help",
+        "cogs.say",
     ]
 
     for extension in extensiones:
