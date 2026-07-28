@@ -49,6 +49,7 @@ async def cargar_extensiones():
         "cogs.help",
         "cogs.say",
         "cogs.owner",
+        "nick.py",
     ]
 
     for extension in extensiones:
