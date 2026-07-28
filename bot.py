@@ -40,7 +40,7 @@ async def cargar_extensiones():
         "cogs.bienvenida",
         "cogs.logs",
         "cogs.tickets",
-        "cogs.verificacion",
+        "cogs.verificado",
         "cogs.utilidades",
         "cogs.antispam",
         "cogs.status",
