@@ -1,6 +1,17 @@
 import discord
 from discord.ext import commands
 
+@commands.command(name="invite")
+async def invite(self, ctx):
+
+    url = discord.utils.oauth_url(
+        self.bot.user.id,
+        permissions=discord.Permissions(administrator=True)
+    )
+
+    await ctx.send(
+        f"🔗 **Invitá a {self.bot.user.name} a tu servidor:**\n{url}"
+    )
 
 class Utilidades(commands.Cog):
 
