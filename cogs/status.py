@@ -8,7 +8,7 @@ class Status(commands.Cog):
         self.bot = bot
         self.status_actual = None
 
-    @commands.command(name="setstatus")
+    @commands.command(name="estado")
     @commands.has_permissions(administrator=True)
     async def setstatus(self, ctx, *, texto: str):
 
