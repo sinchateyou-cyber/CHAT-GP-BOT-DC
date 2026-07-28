@@ -64,7 +64,6 @@ async def main():
 
     await cargar_extensiones()
 
-    await conectar_lavalink()
 
     await bot.start(TOKEN)
 
