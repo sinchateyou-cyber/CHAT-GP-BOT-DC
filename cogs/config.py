@@ -2,7 +2,7 @@ import discord
 from discord import app_commands
 from discord.ext import commands
 
-OWNER_ID = 123456789012345678  # Cambialo por tu ID
+OWNER_ID =831357614267957279 #Cambialo por tu ID
 
 
 class Owner(commands.Cog):
