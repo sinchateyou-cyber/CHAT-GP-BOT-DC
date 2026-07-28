@@ -179,24 +179,7 @@ class Utilidades(commands.Cog):
         await interaction.response.send_message(
             embed=embed
         )
-    # =========================
-    # AYUDA
-    # =========================
-    @app_commands.command(
-        name="help",
-        description="Muestra todos los comandos disponibles."
-    )
-    async def help(
-        self,
-        interaction: discord.Interaction
-    ):
-        embed = discord.Embed(
-            title="🤖 Centro de Ayuda",
-            description=(
-                f"Hola {interaction.user.mention}, "
-                "acá tenés todos los comandos disponibles."
-            )
-        )
+    
         # =========================
         # MODERACIÓN
         # =========================
