@@ -47,6 +47,7 @@ class MiBot(commands.Bot):
             "cogs.status",
             "cogs.invite",
             "cogs.help",
+            "cogs.clear",
         ]
         # =========================
         # CARGAR COGS
