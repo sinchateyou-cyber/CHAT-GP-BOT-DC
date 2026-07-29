@@ -10,49 +10,7 @@ class Moderacion(commands.Cog):
     # COMPROBAR SI ES OWNER
     # =========================================================
     def es_owner(self, interaction: discord.Interaction):
-        return interaction.user.id == int(OWNER_ID)
-    # =========================================================
-    # CLEAR
-    # =========================================================
-    @app_commands.command(
-        name="clear",
-        description="Elimina una cantidad de mensajes del canal."
-    )
-    @app_commands.describe(
-        cantidad="Cantidad de mensajes a eliminar (1-100)."
-    )
-    async def clear(
-        self,
-        interaction: discord.Interaction,
-        cantidad: int
-    ):
-        if not self.es_owner(interaction):
-            if not interaction.user.guild_permissions.manage_messages:
-                await interaction.response.send_message(
-                    "❌ No tenés permisos para usar este comando.",
-                    ephemeral=True
-                )
-                return
-        if cantidad < 1 or cantidad > 100:
-            await interaction.response.send_message(
-                "❌ La cantidad debe estar entre 1 y 100.",
-                ephemeral=True
-            )
-            return
-        await interaction.response.send_message(
-            f"🗑️ Eliminando {cantidad} mensajes...",
-            ephemeral=True
-        )
-        await interaction.channel.purge(
-            limit=cantidad
-        )
-        mensaje = await interaction.channel.send(
-            f"🗑️ {interaction.user.mention} "
-            f"eliminó {cantidad} mensajes."
-        )
-        await mensaje.delete(
-            delay=3
-        )
+        return interaction.user.id == int(OWNER_
     # =========================================================
     # KICK
     # =========================================================
