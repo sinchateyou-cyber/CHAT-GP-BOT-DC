@@ -62,6 +62,7 @@ class MiBot(commands.Bot):
             "cogs.invites",
             "cogs.invites_command",
             "cogs.invites_leaderboard",
+            "cogs.botinfo",
         ]
         # =========================
         # CARGAR COGS
