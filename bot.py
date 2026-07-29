@@ -32,7 +32,12 @@ class MiBot(commands.Bot):
     # =========================
     async def setup_hook(self):
         extensiones = [
-            "cogs.moderacion",
+            "cogs.lock",
+            "cogs.ban",
+            "cogs.timeout",
+            "cogs.untiomeout",
+            "cogs.unlock",
+            "cogs.kick",
             "cogs.afk",
             "cogs.bienvenida",
             "cogs.logs",
