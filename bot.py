@@ -52,7 +52,7 @@ class MiBot(commands.Bot):
             "cogs.addrole",
              "cogs.createrole",
              "cogs.deleterole",
-            "cogs.status",
+            "cogs.setstatus",
             "cogs.invite",
             "cogs.help",
             "cogs.clear",
