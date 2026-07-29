@@ -33,6 +33,7 @@ class MiBot(commands.Bot):
     async def setup_hook(self):
         extensiones = [
             "cogs.lock",
+            "setowner",
             "cogs.ban",
             "cogs.timeout",
             "cogs.untiomeout",
