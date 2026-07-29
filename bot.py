@@ -57,6 +57,7 @@ class MiBot(commands.Bot):
             "cogs.setstatus",
             "cogs.invite",
             "cogs.help",
+            "cogs.maintenance",
             "cogs.clear",
             "cogs.addemoji",
             "cogs.invites",
