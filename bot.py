@@ -34,14 +34,30 @@ async def on_ready():
     print(f"🤖 Bot conectado: {bot.user}")
     print(f"🆔 ID: {bot.user.id}")
     print(f"🌐 Servidores: {len(bot.guilds)}")
-    # =========================
-    # SINCRONIZAR SLASH COMMANDS
-    # =========================
+
     try:
-        guild = discord.Object(id=GUILD_ID)
-        synced = await bot.tree.sync(
-            guild=guild
+        synced = await bot.tree.sync()
+
+        print(
+            f"✅ Slash Commands sincronizados: "
+            f"{len(synced)}"
         )
+
+    except Exception as error:
+        print(
+            f"❌ Error sincronizando Slash Commands: "
+            f"{error}"
+        )
+
+    print("=" * 40)
+
+    await bot.change_presence(
+        activity=discord.Activity(
+            type=discord.ActivityType.watching,
+            name="/help 💎"
+        )
+    )
+
         print(
             f"✅ Slash Commands sincronizados "
             f"en el servidor: {len(synced)}"
