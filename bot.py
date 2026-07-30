@@ -42,7 +42,6 @@ class MiBot(commands.Bot):
     # =========================
     # CARGAR COGS Y SINCRONIZAR
     # =========================
-    await bot.load_extension("cogs.config")
     async def setup_hook(self):
         extensiones = [
             "cogs.lock",
