@@ -1,6 +1,7 @@
 import os
 import asyncio
 import discord
+import wavelink
 from discord.ext import commands
 import os
 import threading
@@ -39,6 +40,23 @@ class MiBot(commands.Bot):
             intents=intents,
             help_command=None
         )
+            async def connect_lavalink(self):
+        try:
+            await wavelink.Pool.connect(
+                nodes=[
+                    wavelink.Node(
+                        identifier="main",
+                        uri=os.getenv("LAVALINK_URI"),
+                        password=os.getenv("LAVALINK_PASSWORD")
+                    )
+                ],
+                client=self
+            )
+
+            print("🎵 Lavalink conectado correctamente.")
+
+        except Exception as error:
+            print(f"❌ Error conectando Lavalink: {error}")
     # =========================
     # CARGAR COGS Y SINCRONIZAR
     # =========================
