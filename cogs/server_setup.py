@@ -123,7 +123,7 @@ class ServerSetup(commands.Cog):
     # ============================================================
 
     @app_commands.command(
-        name="server-setup",
+        name="serversetup",
         description="Configura automáticamente el servidor."
     )
     @app_commands.checks.has_permissions(administrator=True)
