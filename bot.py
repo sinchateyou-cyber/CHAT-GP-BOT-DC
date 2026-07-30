@@ -76,6 +76,7 @@ class MiBot(commands.Bot):
     # ========================================================
 
     async def setup_hook(self):
+        print("📋 Comandos registrados:")
 
         # ====================================================
         # LISTA DE COGS
@@ -145,7 +146,20 @@ class MiBot(commands.Bot):
                     f"{error}"
                 )
 
+# ====================================================
 
+# MOSTRAR COMANDOS REGISTRADOS
+
+# ====================================================
+
+print("📋 Comandos registrados:")
+
+for command in self.tree.get_commands():
+
+    print(
+
+        f"   /{command.name}"
+        
         # ====================================================
         # SINCRONIZAR SLASH COMMANDS
         # ====================================================
