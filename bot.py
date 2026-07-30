@@ -3,7 +3,7 @@ import asyncio
 import threading
 
 import discord
-import wavelink
+
 
 from discord.ext import commands
 from flask import Flask
@@ -36,12 +36,7 @@ def run_web():
 TOKEN = os.getenv("DISCORD_TOKEN")
 
 
-# ============================================================
-# CONFIGURACIÓN DE LAVALINK
-# ============================================================
 
-LAVALINK_URI = os.getenv("LAVALINK_URI")
-LAVALINK_PASSWORD = os.getenv("LAVALINK_PASSWORD")
 
 
 # ============================================================
@@ -76,67 +71,11 @@ class MiBot(commands.Bot):
             help_command=None
         )
 
-
-    # ========================================================
-    # CONFIGURAR LAVALINK
-    # ========================================================
-
-    async def connect_lavalink(self):
-
-        if not LAVALINK_URI:
-            print(
-                "⚠️ LAVALINK_URI no está configurado."
-            )
-            print(
-                "⚠️ Lavalink no será conectado."
-            )
-            return
-
-        if not LAVALINK_PASSWORD:
-            print(
-                "⚠️ LAVALINK_PASSWORD no está configurado."
-            )
-            print(
-                "⚠️ Lavalink no será conectado."
-            )
-            return
-
-        try:
-
-            await wavelink.Pool.connect(
-                nodes=[
-                    wavelink.Node(
-                        identifier="main",
-                        uri=LAVALINK_URI,
-                        password=LAVALINK_PASSWORD
-                    )
-                ],
-                client=self
-            )
-
-            print(
-                "🎵 Lavalink conectado correctamente."
-            )
-
-        except Exception as error:
-
-            print(
-                f"❌ Error conectando Lavalink: {error}"
-            )
-
-
     # ========================================================
     # CARGAR COGS
     # ========================================================
 
     async def setup_hook(self):
-
-        # ====================================================
-        # CONECTAR LAVALINK
-        # ====================================================
-
-        await self.connect_lavalink()
-
 
         # ====================================================
         # LISTA DE COGS
