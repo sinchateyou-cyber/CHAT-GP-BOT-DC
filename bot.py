@@ -160,6 +160,8 @@ for command in self.tree.get_commands():
 
         f"   /{command.name}"
         
+        )
+        
         # ====================================================
         # SINCRONIZAR SLASH COMMANDS
         # ====================================================
