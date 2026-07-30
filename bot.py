@@ -97,7 +97,7 @@ class MiBot(commands.Bot):
             "cogs.bienvenida",
             "cogs.logs",
             "cogs.tickets",
-            "cogs.verificado",
+            "cogs.verification",
             "cogs.utilidades",
             "cogs.canales",
             "cogs.say",
