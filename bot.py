@@ -38,7 +38,7 @@ class MiBot(commands.Bot):
             "cogs.setowner",
             "cogs.ban",
             "cogs.timeout",
-            "cogs.untiomeout",
+            "cogs.untimeout",
             "cogs.unlock",
             "cogs.kick",
             "cogs.afk",
