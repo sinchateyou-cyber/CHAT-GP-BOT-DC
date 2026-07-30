@@ -45,6 +45,7 @@ class MiBot(commands.Bot):
     async def setup_hook(self):
         extensiones = [
             "cogs.lock",
+            "cogs.music",
             "cogs.avatar",
             "cogs.antilink",
             "cogs.antiflood",
