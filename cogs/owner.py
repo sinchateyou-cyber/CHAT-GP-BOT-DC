@@ -1,3 +1,4 @@
+
 import json
 import os
 
@@ -49,19 +50,12 @@ class Owner(commands.Cog):
     # ========================================================
     # /setowner
     # ========================================================
-
-    @app_commands.command(
-        name="setowner",
-        description="Agrega un usuario como owner del bot."
+    if interaction.user.id != MAIN_OWNER_ID:
+    await interaction.response.send_message(
+        "❌ Solo el owner principal del bot puede usar este comando.",
+        ephemeral=True
     )
-    @app_commands.describe(
-        usuario="Usuario que será agregado como owner."
-    )
-    async def setowner(
-        self,
-        interaction: discord.Interaction,
-        usuario: discord.User
-    ):
+    return
 
         # Solo el owner principal de Discord puede usarlo
         if interaction.user.id != self.bot.owner_id:
@@ -91,19 +85,12 @@ class Owner(commands.Cog):
     # ========================================================
     # /removeowner
     # ========================================================
-
-    @app_commands.command(
-        name="removeowner",
-        description="Quita a un usuario de la lista de owners."
+    if interaction.user.id != MAIN_OWNER_ID:
+    await interaction.response.send_message(
+        "❌ Solo el owner principal del bot puede usar este comando.",
+        ephemeral=True
     )
-    @app_commands.describe(
-        usuario="Usuario al que se le quitará el acceso de owner."
-    )
-    async def removeowner(
-        self,
-        interaction: discord.Interaction,
-        usuario: discord.User
-    ):
+    return
 
         # Solo el owner principal puede quitar owners
         if interaction.user.id != self.bot.owner_id:
