@@ -117,7 +117,8 @@ class MiBot(commands.Bot):
             "cogs.config",
             "cogs.play",
             "cogs.stop",
-            "cogs.leave"
+            "cogs.leave",
+            "cogs.server_setup"
         ]
 
 
