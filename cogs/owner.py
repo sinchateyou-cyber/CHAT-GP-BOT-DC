@@ -4,6 +4,7 @@ import os
 import discord
 from discord import app_commands
 from discord.ext import commands
+MAIN_OWNER_ID = 831357614267957279
 
 
 OWNERS_FILE = "data/owners.json"
