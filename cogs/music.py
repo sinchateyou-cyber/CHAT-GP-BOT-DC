@@ -119,7 +119,10 @@ class Music(commands.Cog):
             # ------------------------------------------------
             # BUSCAR CANCIÓN
             # ------------------------------------------------
-            resultados = await wavelink.Playable.search(busqueda)
+            resultados = await wavelink.Playable.search(
+    busqueda,
+    source=wavelink.TrackSource.YouTube
+)
             if not resultados:
                 return await interaction.followup.send(
                     "❌ No encontré ninguna canción."
