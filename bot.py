@@ -176,7 +176,6 @@ class MiBot(commands.Bot):
             "cogs.invites_leaderboard",
             "cogs.botinfo",
             "cogs.config",
-            "cogs.music",
             "cogs.play",
             "cogs.stop",
             "cogs.leave"
