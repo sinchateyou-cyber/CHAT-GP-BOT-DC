@@ -145,7 +145,6 @@ class MiBot(commands.Bot):
         extensiones = [
 
             "cogs.lock",
-            "cogs.music",
             "cogs.avatar",
 
             "cogs.antilink",
@@ -197,6 +196,10 @@ class MiBot(commands.Bot):
             "cogs.botinfo",
 
             "cogs.config"
+            "cogs.music",
+            "cogs.play",
+            "cogs.stop",
+            "cogs.leave"
         ]
 
 
