@@ -2,6 +2,18 @@ import os
 import asyncio
 import discord
 from discord.ext import commands
+import os
+import threading
+from flask import Flask
+app = Flask(__name__)
+
+@app.route("/")
+def home():
+    return "Bot online"
+
+def run_web():
+    port = int(os.environ.get("PORT", 10000))
+    app.run(host="0.0.0.0", port=port)
 # =========================
 # TOKEN
 # =========================
@@ -125,6 +137,7 @@ async def main():
             "DISCORD_TOKEN"
         )
         return
+        threading.Thread(target=run_web, daemon=True).start()
     await bot.start(TOKEN)
 # =========================
 # EJECUTAR
