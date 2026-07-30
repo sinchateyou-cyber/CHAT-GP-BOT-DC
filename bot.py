@@ -76,130 +76,80 @@ class MiBot(commands.Bot):
     # ========================================================
 
     async def setup_hook(self):
-        print("📋 Comandos registrados:")
 
-        # ====================================================
-        # LISTA DE COGS
-        # ====================================================
+    extensiones = [
+        "cogs.lock",
+        "cogs.avatar",
+        "cogs.antilink",
+        "cogs.antiflood",
+        "cogs.antispam",
+        "cogs.owner",
+        "cogs.ban",
+        "cogs.kick",
+        "cogs.timeout",
+        "cogs.untimeout",
+        "cogs.unlock",
+        "cogs.afk",
+        "cogs.bienvenida",
+        "cogs.logs",
+        "cogs.tickets",
+        "cogs.verification",
+        "cogs.utilidades",
+        "cogs.canales",
+        "cogs.say",
+        "cogs.nick",
+        "cogs.addrole",
+        "cogs.createrole",
+        "cogs.deleterole",
+        "cogs.setstatus",
+        "cogs.invite",
+        "cogs.help",
+        "cogs.clear",
+        "cogs.addemoji",
+        "cogs.invites",
+        "cogs.invites_command",
+        "cogs.invites_leaderboard",
+        "cogs.botinfo",
+        "cogs.config",
+        "cogs.play",
+        "cogs.stop",
+        "cogs.leave",
+        "cogs.server_setup"
+    ]
 
-        extensiones = [
-            "cogs.lock",
-            "cogs.avatar",
-            "cogs.antilink",
-            "cogs.antiflood",
-            "cogs.antispam",
-            "cogs.owner",
-            "cogs.ban",
-            "cogs.kick",
-            "cogs.timeout",
-            "cogs.untimeout",
-            "cogs.unlock",
-            "cogs.afk",
-            "cogs.bienvenida",
-            "cogs.logs",
-            "cogs.tickets",
-            "cogs.verification",
-            "cogs.utilidades",
-            "cogs.canales",
-            "cogs.say",
-            "cogs.nick",
-            "cogs.addrole",
-            "cogs.createrole",
-            "cogs.deleterole",
-            "cogs.setstatus",
-            "cogs.invite",
-            "cogs.help",
-            "cogs.clear",
-            "cogs.addemoji",
-            "cogs.invites",
-            "cogs.invites_command",
-            "cogs.invites_leaderboard",
-            "cogs.botinfo",
-            "cogs.config",
-            "cogs.play",
-            "cogs.stop",
-            "cogs.leave",
-            "cogs.server_setup"
-        ]
-
-
-        # ====================================================
-        # CARGAR CADA COG
-        # ====================================================
-
-        for extension in extensiones:
-
-            try:
-
-                await self.load_extension(
-                    extension
-                )
-
-                print(
-                    f"✅ Cargado: {extension}"
-                )
-
-            except Exception as error:
-
-                print(
-                    f"❌ Error en {extension}: "
-                    f"{error}"
-                )
-
-# ====================================================
-
-# MOSTRAR COMANDOS REGISTRADOS
-
-# ====================================================
-
-print("📋 Comandos registrados:")
-
-for command in self.tree.get_commands():
-
-    print(
-
-        f"   /{command.name}"
-        
-        )
-        
-        # ====================================================
-        # SINCRONIZAR SLASH COMMANDS
-        # ====================================================
-
-        guild = discord.Object(
-            id=GUILD_ID
-        )
-
+    # Cargar todos los Cogs
+    for extension in extensiones:
         try:
-
-            # Copiar comandos globales
-            # al servidor de prueba
-
-            self.tree.copy_global_to(
-                guild=guild
-            )
-
-
-            # Sincronizar comandos
-
-            synced = await self.tree.sync(
-                guild=guild
-            )
-
-
-            print(
-                "✅ Slash Commands sincronizados: "
-                f"{len(synced)}"
-            )
+            await self.load_extension(extension)
+            print(f"✅ Cargado: {extension}")
 
         except Exception as error:
+            print(f"❌ Error en {extension}: {error}")
 
-            print(
-                "❌ Error sincronizando "
-                f"comandos: {error}"
-            )
+    # Mostrar comandos registrados
+    print("📋 Comandos registrados:")
 
+    for command in self.tree.get_commands():
+        print(f"   /{command.name}")
 
+    # Servidor donde sincronizar comandos
+    guild = discord.Object(id=GUILD_ID)
+
+    try:
+        # Copiar comandos globales al servidor
+        self.tree.copy_global_to(guild=guild)
+
+        # Sincronizar comandos
+        synced = await self.tree.sync(guild=guild)
+
+        print(
+            f"✅ Slash Commands sincronizados: {len(synced)}"
+        )
+
+    except Exception as error:
+        print(
+            f"❌ Error sincronizando comandos: {error}"
+        )
 # ============================================================
 # CREAR BOT
 # ============================================================
