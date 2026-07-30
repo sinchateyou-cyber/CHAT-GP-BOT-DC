@@ -130,10 +130,7 @@ class Music(commands.Cog):
             # ------------------------------------------------
             # BUSCAR CANCIÓN
             # ------------------------------------------------
-            resultados = await wavelink.Playable.search(
-                busqueda,
-                source=wavelink.TrackSource.YouTube
-            )
+            resultados = await wavelink.Playable.search(busqueda)
             # ------------------------------------------------
             # COMPROBAR RESULTADOS
             # ------------------------------------------------
