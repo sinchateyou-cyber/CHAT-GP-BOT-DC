@@ -141,13 +141,7 @@ class Music(commands.Cog):
             # ------------------------------------------------
             # OBTENER PRIMER RESULTADO
             # ------------------------------------------------
-            if isinstance(
-                resultados,
-                wavelink.Search
-            ):
-                track = resultados[0]
-            else:
-                track = resultados
+            track = resultados[0]
             # ------------------------------------------------
             # REPRODUCIR
             # ------------------------------------------------
