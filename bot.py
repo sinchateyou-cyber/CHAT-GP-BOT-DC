@@ -854,6 +854,7 @@ class MiBot(
             "cogs.addrole",
             "cogs.createrole",
             "cogs.deleterole",
+            "cogs.reactionroles",
             # CANALES
             "cogs.canales",
             # SERVIDOR
