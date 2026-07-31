@@ -87,6 +87,7 @@ class MiBot(commands.Bot):
             "cogs.invites_leaderboard",
             "cogs.botinfo",
             "cogs.config",
+            "cogs.social",
             # =================================================
             # SISTEMA DE XP
             # =================================================
