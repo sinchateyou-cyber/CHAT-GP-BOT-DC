@@ -6,9 +6,7 @@
             "roles": {
                 "👨": "Hombre",
                 "👩": "Mujer",
-                "⚧️": "No binario",
-                "🌈": "Otro",
-                "❓": "Prefiero no decirlo"
+                "🧑": "Otro"
             }
         },
         "pais": {
@@ -19,22 +17,17 @@
                 "🇨🇱": "Chile",
                 "🇺🇾": "Uruguay",
                 "🇵🇾": "Paraguay",
-                "🇧🇴": "Bolivia",
-                "🇵🇪": "Perú",
                 "🇧🇷": "Brasil",
                 "🇲🇽": "México",
-                "🇨🇴": "Colombia",
-                "🇪🇸": "España",
-                "🌎": "Otro país"
+                "🇪🇸": "España"
             }
         },
         "dispositivo": {
-            "titulo": "📱 Dispositivo",
-            "descripcion": "Seleccioná tu dispositivo.",
+            "titulo": "💻 Dispositivo",
+            "descripcion": "¿Desde qué dispositivo usás Discord?",
             "roles": {
                 "📱": "Celular",
-                "💻": "PC",
-                "🎮": "Consola"
+                "💻": "PC"
             }
         },
         "edad": {
@@ -48,7 +41,7 @@
         },
         "colores": {
             "titulo": "🎨 Colores",
-            "descripcion": "Elegí el color que querés tener.",
+            "descripcion": "Elegí tu color favorito.",
             "roles": {
                 "🔴": "Rojo",
                 "🟠": "Naranja",
@@ -56,9 +49,8 @@
                 "🟢": "Verde",
                 "🔵": "Azul",
                 "🟣": "Violeta",
-                "🩷": "Rosa",
-                "⚪": "Blanco",
-                "⚫": "Negro"
+                "⚫": "Negro",
+                "⚪": "Blanco"
             }
         }
     }
