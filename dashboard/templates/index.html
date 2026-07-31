@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+    <title>
+        Dashboard | Discord Bot
+    </title>
+    <link
+        rel="stylesheet"
+        href="{{ url_for('static', filename='style.css') }}"
+    >
+</head>
+<body>
+    <!-- ====================================================
+         BARRA LATERAL
+    ===================================================== -->
+    <aside class="sidebar">
+        <div class="logo">
+            🤖
+            <span>
+                Bot Dashboard
+            </span>
+        </div>
+        <!-- USUARIO -->
+        <div
+            id="user-panel"
+            class="user-panel"
+        >
+            <div
+                id="user-info"
+                class="user-info"
+            >
+                <div
+                    id="user-avatar"
+                    class="user-avatar"
+                >
+                    👤
+                </div>
+                <div>
+                    <strong
+                        id="user-name"
+                    >
+                        Invitado
+                    </strong>
+                    <small
+                        id="user-status"
+                    >
+                        No conectado
+                    </small>
+                </div>
+            </div>
+            <a
+                id="login-button"
+                class="login-button"
+                href="/login"
+            >
+                🔐 Iniciar sesión
+            </a>
+            <a
+                id="logout-button"
+                class="logout-button"
+                href="/logout"
+                style="display: none;"
+            >
+                🚪 Cerrar sesión
+            </a>
+        </div>
+        <!-- MENÚ -->
+        <nav class="menu">
+            <button
+                class="menu-item active"
+                onclick="showSection('inicio')"
+            >
+                🏠
+                <span>
+                    Inicio
+                </span>
+            </button>
+            <button
+                class="menu-item"
+                onclick="showSection('servidores')"
+            >
+                🖥️
+                <span>
+                    Servidores
+                </span>
+            </button>
+            <button
+                class="menu-item"
+                onclick="showSection('estadisticas')"
+            >
+                📊
+                <span>
+                    Estadísticas
+                </span>
+            </button>
+            <button
+                class="menu-item"
+                onclick="showSection('configuracion')"
+            >
+                ⚙️
+                <span>
+                    Configuración
+                </span>
+            </button>
+        </nav>
+    </aside>
+    <!-- ====================================================
+         CONTENIDO PRINCIPAL
+    ===================================================== -->
+    <main class="main-content">
+        <!-- HEADER -->
+        <header class="topbar">
+            <div>
+                <h1>
+                    Dashboard
+                </h1>
+                <p>
+                    Panel de control de tu bot de Discord
+                </p>
+            </div>
+            <div
+                id="connection-status"
+                class="connection-status"
+            >
+                🟡 Conectando...
+            </div>
+        </header>
+        <!-- =================================================
+             INICIO
+        ================================================== -->
+        <section
+            id="inicio"
+            class="section active-section"
+        >
+            <div class="welcome">
+                <h2>
+                    ¡Bienvenido al Dashboard! 👋
+                </h2>
+                <p>
+                    Desde este panel podrás administrar
+                    y controlar tu bot de Discord.
+                </p>
+            </div>
+            <!-- ESTADÍSTICAS -->
+            <div class="stats-grid">
+                <!-- BOT -->
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        🤖
+                    </div>
+                    <div>
+                        <span>
+                            Estado del bot
+                        </span>
+                        <strong
+                            id="bot-status"
+                        >
+                            Cargando...
+                        </strong>
+                    </div>
+                </div>
+                <!-- SERVIDORES -->
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        🖥️
+                    </div>
+                    <div>
+                        <span>
+                            Servidores
+                        </span>
+                        <strong
+                            id="guild-count"
+                        >
+                            0
+                        </strong>
+                    </div>
+                </div>
+                <!-- LATENCIA -->
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        📡
+                    </div>
+                    <div>
+                        <span>
+                            Latencia
+                        </span>
+                        <strong
+                            id="bot-latency"
+                        >
+                            0 ms
+                        </strong>
+                    </div>
+                </div>
+                <!-- NOMBRE -->
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        🆔
+                    </div>
+                    <div>
+                        <span>
+                            Bot
+                        </span>
+                        <strong
+                            id="bot-name"
+                        >
+                            Cargando...
+                        </strong>
+                    </div>
+                </div>
+            </div>
+            <!-- INFORMACIÓN DEL BOT -->
+            <div class="panel">
+                <h2>
+                    Información del bot
+                </h2>
+                <div class="info-row">
+                    <span>
+                        Nombre
+                    </span>
+                    <strong
+                        id="info-bot-name"
+                    >
+                        Cargando...
+                    </strong>
+                </div>
+                <div class="info-row">
+                    <span>
+                        ID
+                    </span>
+                    <strong
+                        id="info-bot-id"
+                    >
+                        Cargando...
+                    </strong>
+                </div>
+                <div class="info-row">
+                    <span>
+                        Estado
+                    </span>
+                    <strong
+                        id="info-bot-status"
+                    >
+                        Cargando...
+                    </strong>
+                </div>
+            </div>
+        </section>
+        <!-- =================================================
+             SERVIDORES
+        ================================================== -->
+        <section
+            id="servidores"
+            class="section"
+        >
+            <div class="section-header">
+                <h2>
+                    Mis servidores
+                </h2>
+                <p>
+                    Servidores donde está instalado tu bot.
+                </p>
+            </div>
+            <div
+                id="guild-list"
+                class="guild-grid"
+            >
+                <div class="loading">
+                    🔐 Iniciá sesión con Discord
+                    para ver tus servidores.
+                </div>
+            </div>
+        </section>
+        <!-- =================================================
+             ESTADÍSTICAS
+        ================================================== -->
+        <section
+            id="estadisticas"
+            class="section"
+        >
+            <div class="section-header">
+                <h2>
+                    Estadísticas
+                </h2>
+            </div>
+            <div class="panel">
+                <p>
+                    📊 Estadísticas del bot.
+                </p>
+                <br>
+                <p>
+                    Servidores conectados:
+                    <strong
+                        id="stats-guilds"
+                    >
+                        0
+                    </strong>
+                </p>
+            </div>
+        </section>
+        <!-- =================================================
+             CONFIGURACIÓN
+        ================================================== -->
+        <section
+            id="configuracion"
+            class="section"
+        >
+            <div class="section-header">
+                <h2>
+                    Configuración
+                </h2>
+                <p>
+                    Administrá la configuración de tu bot.
+                </p>
+            </div>
+            <div class="panel">
+                <h2>
+                    ⚙️ Configuración del servidor
+                </h2>
+                <p>
+                    Seleccioná un servidor desde
+                    la sección "Servidores" para
+                    comenzar a configurarlo.
+                </p>
+            </div>
+        </section>
+    </main>
+    <!-- ====================================================
+         JAVASCRIPT
+    ===================================================== -->
+    <script
+        src="{{ url_for('static', filename='script.js') }}"
+    ></script>
+    <script>
+        // ====================================================
+        // COMPROBAR USUARIO
+        // ====================================================
+        async function loadUser() {
+            try {
+                const response =
+                    await fetch(
+                        "/api/me"
+                    );
+                const data =
+                    await response.json();
+                const loginButton =
+                    document.getElementById(
+                        "login-button"
+                    );
+                const logoutButton =
+                    document.getElementById(
+                        "logout-button"
+                    );
+                const userName =
+                    document.getElementById(
+                        "user-name"
+                    );
+                const userStatus =
+                    document.getElementById(
+                        "user-status"
+                    );
+                const userAvatar =
+                    document.getElementById(
+                        "user-avatar"
+                    );
+                // =========================================
+                // USUARIO CONECTADO
+                // =========================================
+                if (
+                    data.logged_in &&
+                    data.user
+                ) {
+                    const user =
+                        data.user;
+                    userName.textContent =
+                        user.global_name ||
+                        user.username ||
+                        "Usuario";
+                    userStatus.textContent =
+                        "Conectado";
+                    loginButton.style.display =
+                        "none";
+                    logoutButton.style.display =
+                        "block";
+                    // =====================================
+                    // AVATAR
+                    // =====================================
+                    if (
+                        user.avatar &&
+                        user.id
+                    ) {
+                        userAvatar.innerHTML = `
+                            <img
+                                src="https://cdn.discordapp.com/avatars/${user.id}/${user.avatar}.png"
+                                alt="Avatar"
+                                class="user-avatar-image"
+                            >
+                        `;
+                    }
+                }
+                // =========================================
+                // USUARIO NO CONECTADO
+                // =========================================
+                else {
+                    userName.textContent =
+                        "Invitado";
+                    userStatus.textContent =
+                        "No conectado";
+                    loginButton.style.display =
+                        "block";
+                    logoutButton.style.display =
+                        "none";
+                }
+            }
+            catch (error) {
+                console.error(
+                    "Error cargando usuario:",
+                    error
+                );
+            }
+        }
+        // ====================================================
+        // INICIAR
+        // ====================================================
+        document.addEventListener(
+            "DOMContentLoaded",
+            () => {
+                loadUser();
+            }
+        );
+    </script>
+</body>
+</html>
