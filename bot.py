@@ -890,7 +890,8 @@ class MiBot(
             "cogs.play",
             "cogs.stop",
             "cogs.leave",
-            "cogs.reglas"
+            "cogs.reglas",
+            "cogs.configuracionall"
         ]
         # ====================================================
         # CARGAR COGS
