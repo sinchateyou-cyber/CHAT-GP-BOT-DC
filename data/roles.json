@@ -30,7 +30,7 @@
         },
         "dispositivo": {
             "titulo": "📱 Dispositivo",
-            "descripcion": "Seleccioná desde qué dispositivo jugás.",
+            "descripcion": "Seleccioná tu dispositivo.",
             "roles": {
                 "📱": "Celular",
                 "💻": "PC",
