@@ -1,0 +1,116 @@
+import os
+import json
+import asyncio
+import discord
+from discord.ext import commands
+from flask import request, jsonify
+# ============================================================
+# ARCHIVO DE CONFIGURACIÓN
+# ============================================================
+CONFIG_FILE = "data/security.json"
+# ============================================================
+# CREAR CARPETA DATA
+# ============================================================
+def ensure_data_folder():
+    if not os.path.exists("data"):
+        os.makedirs("data")
+# ============================================================
+# CARGAR CONFIGURACIÓN
+# ============================================================
+def load_config():
+    ensure_data_folder()
+    if not os.path.exists(CONFIG_FILE):
+        return {}
+    try:
+        with open(
+            CONFIG_FILE,
+            "r",
+            encoding="utf-8"
+        ) as file:
+            return json.load(file)
+    except Exception:
+        return {}
+# ============================================================
+# GUARDAR CONFIGURACIÓN
+# ============================================================
+def save_config(config):
+    ensure_data_folder()
+    with open(
+        CONFIG_FILE,
+        "w",
+        encoding="utf-8"
+    ) as file:
+        json.dump(
+            config,
+            file,
+            indent=4,
+            ensure_ascii=False
+        )
+# ============================================================
+# COG DE CONFIGURACIÓN
+# ============================================================
+class SecurityConfig(commands.Cog):
+    def __init__(self, bot):
+        self.bot = bot
+        self.config = load_config()
+    # ========================================================
+    # OBTENER CONFIGURACIÓN
+    # ========================================================
+    def get_guild_config(
+        self,
+        guild_id
+    ):
+        guild_id = str(
+            guild_id
+        )
+        if guild_id not in self.config:
+            self.config[guild_id] = {
+                "antispam": False,
+                "antiflood": False,
+                "antilink": False
+            }
+            save_config(
+                self.config
+            )
+        return self.config[
+            guild_id
+        ]
+    # ========================================================
+    # CAMBIAR CONFIGURACIÓN
+    # ========================================================
+    def set_security(
+        self,
+        guild_id,
+        security_type,
+        enabled
+    ):
+        guild_config = self.get_guild_config(
+            guild_id
+        )
+        guild_config[
+            security_type
+        ] = enabled
+        save_config(
+            self.config
+        )
+    # ========================================================
+    # API: OBTENER SEGURIDAD
+    # ========================================================
+    @commands.Cog.listener()
+    async def on_ready(
+        self
+    ):
+        print(
+            "🛡️ Sistema de configuración de seguridad cargado."
+        )
+# ============================================================
+# SETUP
+# ============================================================
+async def setup(
+    bot
+):
+    await bot.add_cog(
+        SecurityConfig(
+            bot
+        )
+    )
