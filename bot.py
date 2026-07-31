@@ -117,7 +117,8 @@ class MiBot(commands.Bot):
             "cogs.leave",
 
             "cogs.server_setup",
-            "cogs.levels"
+            "cogs.levels",
+            "cogs.xp"
         ]
 
 
