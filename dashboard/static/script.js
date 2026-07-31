@@ -6,12 +6,16 @@
 // ============================================================
 function showSection(sectionId) {
     const sections =
-        document.querySelectorAll(".section");
-    sections.forEach(section => {
-        section.classList.remove(
-            "active-section"
+        document.querySelectorAll(
+            ".section"
         );
-    });
+    sections.forEach(
+        section => {
+            section.classList.remove(
+                "active-section"
+            );
+        }
+    );
     const selectedSection =
         document.getElementById(
             sectionId
@@ -25,23 +29,139 @@ function showSection(sectionId) {
         document.querySelectorAll(
             ".menu-item"
         );
-    buttons.forEach(button => {
-        button.classList.remove(
-            "active"
-        );
-    });
-    buttons.forEach(button => {
-        if (
-            button.getAttribute(
-                "onclick"
-            ) ===
-            `showSection('${sectionId}')`
-        ) {
-            button.classList.add(
+    buttons.forEach(
+        button => {
+            button.classList.remove(
                 "active"
             );
         }
-    });
+    );
+    buttons.forEach(
+        button => {
+            if (
+                button.getAttribute(
+                    "onclick"
+                )
+                ===
+                `showSection('${sectionId}')`
+            ) {
+                button.classList.add(
+                    "active"
+                );
+            }
+        }
+    );
+}
+// ============================================================
+// CARGAR USUARIO LOGUEADO
+// ============================================================
+async function loadUser() {
+    try {
+        const response =
+            await fetch(
+                "/api/me"
+            );
+        if (!response.ok) {
+            throw new Error(
+                "No se pudo obtener el usuario."
+            );
+        }
+        const data =
+            await response.json();
+        const userName =
+            document.getElementById(
+                "user-name"
+            );
+        const userStatus =
+            document.getElementById(
+                "user-status"
+            );
+        const userAvatar =
+            document.getElementById(
+                "user-avatar"
+            );
+        const loginButton =
+            document.getElementById(
+                "login-button"
+            );
+        const logoutButton =
+            document.getElementById(
+                "logout-button"
+            );
+        // ====================================================
+        // USUARIO LOGUEADO
+        // ====================================================
+        if (
+            data.logged_in &&
+            data.user
+        ) {
+            const user =
+                data.user;
+            if (userName) {
+                userName.textContent =
+                    user.global_name ||
+                    user.username ||
+                    "Usuario";
+            }
+            if (userStatus) {
+                userStatus.textContent =
+                    "🟢 Conectado";
+            }
+            if (loginButton) {
+                loginButton.style.display =
+                    "none";
+            }
+            if (logoutButton) {
+                logoutButton.style.display =
+                    "block";
+            }
+            // =================================================
+            // AVATAR DE DISCORD
+            // =================================================
+            if (
+                userAvatar &&
+                user.id &&
+                user.avatar
+            ) {
+                userAvatar.innerHTML = `
+                    <img
+                        src="https://cdn.discordapp.com/avatars/${user.id}/${user.avatar}.png"
+                        alt="Avatar de Discord"
+                        class="user-avatar-image"
+                    >
+                `;
+            }
+        }
+        // ====================================================
+        // USUARIO NO LOGUEADO
+        // ====================================================
+        else {
+            if (userName) {
+                userName.textContent =
+                    "Invitado";
+            }
+            if (userStatus) {
+                userStatus.textContent =
+                    "🔴 No conectado";
+            }
+            if (loginButton) {
+                loginButton.style.display =
+                    "block";
+            }
+            if (logoutButton) {
+                logoutButton.style.display =
+                    "none";
+            }
+        }
+        return data.logged_in === true;
+    }
+    catch (error) {
+        console.error(
+            "Error cargando usuario:",
+            error
+        );
+        return false;
+    }
 }
 // ============================================================
 // CARGAR ESTADO DEL BOT
@@ -54,7 +174,8 @@ async function loadBotStatus() {
             );
         if (!response.ok) {
             throw new Error(
-                "No se pudo obtener el estado del bot."
+                "No se pudo obtener " +
+                "el estado del bot."
             );
         }
         const data =
@@ -72,7 +193,8 @@ async function loadBotStatus() {
                     "🟢 Bot online";
                 connectionStatus.style.color =
                     "#43e97b";
-            } else {
+            }
+            else {
                 connectionStatus.innerHTML =
                     "🔴 Bot offline";
                 connectionStatus.style.color =
@@ -105,7 +227,7 @@ async function loadBotStatus() {
                 "Desconocido";
         }
         // ====================================================
-        // SERVIDORES
+        // CANTIDAD DE SERVIDORES
         // ====================================================
         const guildCount =
             document.getElementById(
@@ -130,7 +252,8 @@ async function loadBotStatus() {
             ) {
                 botLatency.textContent =
                     `${data.latency} ms`;
-            } else {
+            }
+            else {
                 botLatency.textContent =
                     "N/A";
             }
@@ -178,7 +301,8 @@ async function loadBotStatus() {
                 data.guilds ||
                 0;
         }
-    } catch (error) {
+    }
+    catch (error) {
         console.error(
             "Error cargando el estado:",
             error
@@ -207,17 +331,79 @@ async function loadGuilds() {
         return;
     }
     try {
+        // ====================================================
+        // COMPROBAR LOGIN
+        // ====================================================
+        const userResponse =
+            await fetch(
+                "/api/me"
+            );
+        const userData =
+            await userResponse.json();
+        // ====================================================
+        // NO LOGUEADO
+        // ====================================================
+        if (
+            !userData.logged_in
+        ) {
+            guildList.innerHTML = `
+                <div class="loading">
+                    🔐
+                    <br><br>
+                    Necesitás iniciar sesión
+                    con Discord para ver
+                    tus servidores.
+                    <br><br>
+                    <a
+                        href="/login"
+                        class="login-button"
+                    >
+                        🔐 Iniciar sesión con Discord
+                    </a>
+                </div>
+            `;
+            return;
+        }
+        // ====================================================
+        // SOLICITAR SERVIDORES
+        // ====================================================
         const response =
             await fetch(
                 "/api/guilds"
             );
+        // ====================================================
+        // SESIÓN NO AUTORIZADA
+        // ====================================================
+        if (
+            response.status === 401
+        ) {
+            guildList.innerHTML = `
+                <div class="loading">
+                    🔐
+                    <br><br>
+                    Tu sesión expiró.
+                    <br><br>
+                    <a
+                        href="/login"
+                        class="login-button"
+                    >
+                        Iniciar sesión nuevamente
+                    </a>
+                </div>
+            `;
+            return;
+        }
         if (!response.ok) {
             throw new Error(
-                "No se pudieron obtener los servidores."
+                "No se pudieron obtener " +
+                "los servidores."
             );
         }
         const data =
             await response.json();
+        // ====================================================
+        // SIN SERVIDORES
+        // ====================================================
         if (
             !data.success ||
             !data.guilds ||
@@ -225,15 +411,21 @@ async function loadGuilds() {
         ) {
             guildList.innerHTML = `
                 <div class="loading">
-                    🤖 El bot no está
+                    🤖
+                    <br><br>
+                    El bot no está
                     en ningún servidor.
                 </div>
             `;
             return;
         }
-        // Limpiar lista
+        // ====================================================
+        // LIMPIAR LISTA
+        // ====================================================
         guildList.innerHTML = "";
-        // Crear tarjetas
+        // ====================================================
+        // CREAR TARJETAS
+        // ====================================================
         data.guilds.forEach(
             guild => {
                 const card =
@@ -249,7 +441,7 @@ async function loadGuilds() {
                     <div class="guild-header">
                         <img
                             class="guild-icon"
-                            src="${icon}"
+                            src="${escapeHtml(icon)}"
                             alt="Icono del servidor"
                         >
                         <div>
@@ -265,21 +457,203 @@ async function loadGuilds() {
                             </div>
                         </div>
                     </div>
+                    <div class="guild-actions">
+                        <button
+                            class="configure-button"
+                            onclick="configureGuild('${guild.id}')"
+                        >
+                            ⚙️ Configurar
+                        </button>
+                    </div>
                 `;
                 guildList.appendChild(
                     card
                 );
             }
         );
-    } catch (error) {
+    }
+    catch (error) {
         console.error(
             "Error cargando servidores:",
             error
         );
         guildList.innerHTML = `
             <div class="loading">
-                ❌ No se pudieron cargar
+                ❌
+                <br><br>
+                No se pudieron cargar
                 los servidores.
+            </div>
+        `;
+    }
+}
+// ============================================================
+// CONFIGURAR SERVIDOR
+// ============================================================
+function configureGuild(
+    guildId
+) {
+    // Guardar servidor seleccionado
+    localStorage.setItem(
+        "selectedGuild",
+        guildId
+    );
+    // Ir a configuración
+    showSection(
+        "configuracion"
+    );
+    // Cargar información
+    loadGuildInfo(
+        guildId
+    );
+}
+// ============================================================
+// CARGAR INFORMACIÓN DEL SERVIDOR
+// ============================================================
+async function loadGuildInfo(
+    guildId
+) {
+    const configSection =
+        document.getElementById(
+            "configuracion"
+        );
+    if (!configSection) {
+        return;
+    }
+    try {
+        const response =
+            await fetch(
+                `/api/guild/${guildId}`
+            );
+        if (
+            response.status === 401
+        ) {
+            window.location.href =
+                "/login";
+            return;
+        }
+        if (!response.ok) {
+            throw new Error(
+                "No se pudo obtener " +
+                "la información del servidor."
+            );
+        }
+        const data =
+            await response.json();
+        if (
+            !data.success ||
+            !data.guild
+        ) {
+            throw new Error(
+                "Servidor no encontrado."
+            );
+        }
+        const guild =
+            data.guild;
+        // ====================================================
+        // MOSTRAR INFORMACIÓN
+        // ====================================================
+        configSection.innerHTML = `
+            <div class="section-header">
+                <h2>
+                    ⚙️ ${escapeHtml(
+                        guild.name
+                    )}
+                </h2>
+                <p>
+                    Configuración del servidor
+                </p>
+            </div>
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        👥
+                    </div>
+                    <div>
+                        <span>
+                            Miembros
+                        </span>
+                        <strong>
+                            ${guild.member_count || 0}
+                        </strong>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        📁
+                    </div>
+                    <div>
+                        <span>
+                            Canales
+                        </span>
+                        <strong>
+                            ${guild.channel_count || 0}
+                        </strong>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        🎭
+                    </div>
+                    <div>
+                        <span>
+                            Roles
+                        </span>
+                        <strong>
+                            ${guild.role_count || 0}
+                        </strong>
+                    </div>
+                </div>
+            </div>
+            <div class="panel">
+                <h2>
+                    🛠️ Módulos del bot
+                </h2>
+                <p>
+                    Próximamente podrás
+                    configurar los módulos
+                    de tu bot desde aquí.
+                </p>
+                <div class="module-grid">
+                    <button class="module-button">
+                        👋 Bienvenida
+                    </button>
+                    <button class="module-button">
+                        🛡️ Anti-Spam
+                    </button>
+                    <button class="module-button">
+                        🔗 Anti-Links
+                    </button>
+                    <button class="module-button">
+                        🌊 Anti-Flood
+                    </button>
+                    <button class="module-button">
+                        📝 Logs
+                    </button>
+                    <button class="module-button">
+                        🎫 Tickets
+                    </button>
+                    <button class="module-button">
+                        🔒 Verificación
+                    </button>
+                    <button class="module-button">
+                        🎭 Roles
+                    </button>
+                </div>
+            </div>
+        `;
+    }
+    catch (error) {
+        console.error(
+            "Error cargando servidor:",
+            error
+        );
+        configSection.innerHTML = `
+            <div class="loading">
+                ❌
+                <br><br>
+                No se pudo cargar
+                la configuración.
             </div>
         `;
     }
@@ -287,7 +661,9 @@ async function loadGuilds() {
 // ============================================================
 // SEGURIDAD HTML
 // ============================================================
-function escapeHtml(text) {
+function escapeHtml(
+    text
+) {
     const div =
         document.createElement(
             "div"
@@ -300,6 +676,7 @@ function escapeHtml(text) {
 // ACTUALIZAR TODO EL DASHBOARD
 // ============================================================
 async function updateDashboard() {
+    await loadUser();
     await loadBotStatus();
     await loadGuilds();
 }
@@ -310,8 +687,9 @@ document.addEventListener(
     "DOMContentLoaded",
     () => {
         updateDashboard();
-        // Actualizar automáticamente
-        // cada 30 segundos
+        // ====================================================
+        // ACTUALIZAR AUTOMÁTICAMENTE
+        // ====================================================
         setInterval(
             updateDashboard,
             30000
