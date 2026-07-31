@@ -1,120 +1,68 @@
 import discord
-from discord import app_commands
-from discord.ext import commands
+from discord.ext import commands, tasks
 class RichPresence(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
+        self.presence_index = 0
+        # Inicia la actualización automática
+        self.update_presence.start()
+    def cog_unload(self):
+        self.update_presence.cancel()
     # ============================================================
-    # /setpresence
+    # PRESENCIA AUTOMÁTICA
     # ============================================================
-    @app_commands.command(
-        name="setpresence",
-        description="Cambia la actividad que muestra el bot."
-    )
-    @app_commands.describe(
-        tipo="Tipo de actividad que mostrará el bot.",
-        texto="Texto que aparecerá en la actividad."
-    )
-    @app_commands.choices(
-        tipo=[
-            app_commands.Choice(
-                name="🎮 Jugando",
-                value="jugando"
+    @tasks.loop(seconds=30)
+    async def update_presence(self):
+        # Cantidad de servidores
+        servidores = len(self.bot.guilds)
+        # Cantidad total de usuarios
+        usuarios = sum(
+            guild.member_count or 0
+            for guild in self.bot.guilds
+        )
+        # Cantidad de comandos slash
+        comandos = len(self.bot.tree.get_commands())
+        # Diferentes actividades
+        actividades = [
+            discord.Game(
+                name=f"Optik | {servidores} servidores"
             ),
-            app_commands.Choice(
-                name="🎧 Escuchando",
-                value="escuchando"
+            discord.Activity(
+                type=discord.ActivityType.watching,
+                name=f"{usuarios:,} usuarios"
             ),
-            app_commands.Choice(
-                name="👀 Viendo",
-                value="viendo"
+            discord.Activity(
+                type=discord.ActivityType.listening,
+                name=f"/help | {comandos} comandos"
             ),
-            app_commands.Choice(
-                name="🏆 Compitiendo",
-                value="compitiendo"
+            discord.Activity(
+                type=discord.ActivityType.watching,
+                name="tu servidor"
             )
         ]
-    )
-    @app_commands.default_permissions(administrator=True)
-    async def setpresence(
-        self,
-        interaction: discord.Interaction,
-        tipo: app_commands.Choice[str],
-        texto: str
-    ):
-        if not interaction.user.guild_permissions.administrator:
-            await interaction.response.send_message(
-                "❌ Necesitás permisos de **Administrador** para usar este comando.",
-                ephemeral=True
-            )
-            return
-        if len(texto) > 128:
-            await interaction.response.send_message(
-                "❌ El texto no puede superar los **128 caracteres**.",
-                ephemeral=True
-            )
-            return
-        if tipo.value == "jugando":
-            actividad = discord.Game(
-                name=texto
-            )
-        elif tipo.value == "escuchando":
-            actividad = discord.Activity(
-                type=discord.ActivityType.listening,
-                name=texto
-            )
-        elif tipo.value == "viendo":
-            actividad = discord.Activity(
-                type=discord.ActivityType.watching,
-                name=texto
-            )
-        elif tipo.value == "compitiendo":
-            actividad = discord.Activity(
-                type=discord.ActivityType.competing,
-                name=texto
-            )
-        else:
-            await interaction.response.send_message(
-                "❌ Tipo de actividad inválido.",
-                ephemeral=True
-            )
-            return
+        # Selecciona la actividad actual
+        actividad = actividades[
+            self.presence_index
+        ]
+        # Cambia la presencia
         await self.bot.change_presence(
             status=discord.Status.online,
             activity=actividad
         )
-        await interaction.response.send_message(
-            f"✅ Presencia actualizada.\n"
-            f"**Tipo:** {tipo.name}\n"
-            f"**Texto:** `{texto}`"
-        )
+        # Pasa a la siguiente actividad
+        self.presence_index += 1
+        if self.presence_index >= len(actividades):
+            self.presence_index = 0
     # ============================================================
-    # /clearpresence
+    # ESPERAR A QUE EL BOT ESTÉ LISTO
     # ============================================================
-    @app_commands.command(
-        name="clearpresence",
-        description="Elimina la actividad actual del bot."
-    )
-    @app_commands.default_permissions(administrator=True)
-    async def clearpresence(
-        self,
-        interaction: discord.Interaction
-    ):
-        if not interaction.user.guild_permissions.administrator:
-            await interaction.response.send_message(
-                "❌ Necesitás permisos de **Administrador** para usar este comando.",
-                ephemeral=True
-            )
-            return
-        await self.bot.change_presence(
-            status=discord.Status.online,
-            activity=None
-        )
-        await interaction.response.send_message(
-            "✅ La actividad del bot fue eliminada."
-        )
+    @update_presence.before_loop
+    async def before_update_presence(self):
+        await self.bot.wait_until_ready()
 # ============================================================
 # CARGAR COG
 # ============================================================
 async def setup(bot):
-    await bot.add_cog(RichPresence(bot))
+    await bot.add_cog(
+        RichPresence(bot)
+    )
