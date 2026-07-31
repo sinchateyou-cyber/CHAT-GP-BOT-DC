@@ -82,9 +82,10 @@ class AddXP(commands.Cog):
         description="Agrega XP a un usuario."
     )
     @app_commands.describe(
-        usuario="Usuario al que querés agregar XP.",
-        cantidad="Cantidad de XP que querés agregar."
-    )
+    usuario="Usuario al que querés agregar XP.",
+    cantidad="Cantidad de XP a agregar (1 - 1.000.000)."
+)
+        
     @app_commands.checks.has_permissions(
         administrator=True
     )
@@ -169,8 +170,12 @@ class AddXP(commands.Cog):
             data
         )
         # ====================================================
+        # embed
+    # ========================================================
+            # ====================================================
         # EMBED
         # ====================================================
+
         embed = discord.Embed(
             title="✨ XP agregada",
             description=(
@@ -179,6 +184,18 @@ class AddXP(commands.Cog):
             ),
             colour=discord.Colour.green()
         )
+
+        embed.add_field(
+            name="📊 Información de XP",
+            value=(
+                f"✨ XP agregada: **{cantidad:,}**\n"
+                f"📈 XP actual: **{remaining_xp:,}**\n"
+                f"🎯 XP necesaria para el siguiente nivel: "
+                f"**{xp_required(new_level):,}**"
+            ),
+            inline=False
+        )
+
         embed.add_field(
             name="🏆 Nivel",
             value=(
@@ -187,6 +204,7 @@ class AddXP(commands.Cog):
             ),
             inline=True
         )
+
         embed.add_field(
             name="✨ XP",
             value=(
@@ -195,7 +213,9 @@ class AddXP(commands.Cog):
             ),
             inline=True
         )
+
         if new_level > old_level:
+
             embed.add_field(
                 name="🎉 ¡Subió de nivel!",
                 value=(
@@ -204,19 +224,21 @@ class AddXP(commands.Cog):
                 ),
                 inline=False
             )
+
         embed.set_thumbnail(
             url=usuario.display_avatar.url
         )
+
         embed.set_footer(
             text=(
                 f"XP agregada por "
                 f"{interaction.user}"
             )
         )
+
         await interaction.response.send_message(
             embed=embed
         )
-    # ========================================================
     # ERROR
     # ========================================================
     @addxp.error
