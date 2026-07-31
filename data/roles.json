@@ -1,0 +1,65 @@
+{
+    "categorias": {
+        "genero": {
+            "titulo": "👤 Género",
+            "descripcion": "Seleccioná tu género.",
+            "roles": {
+                "👨": "Hombre",
+                "👩": "Mujer",
+                "⚧️": "No binario",
+                "🌈": "Otro",
+                "❓": "Prefiero no decirlo"
+            }
+        },
+        "pais": {
+            "titulo": "🌎 País",
+            "descripcion": "Seleccioná tu país.",
+            "roles": {
+                "🇦🇷": "Argentina",
+                "🇨🇱": "Chile",
+                "🇺🇾": "Uruguay",
+                "🇵🇾": "Paraguay",
+                "🇧🇴": "Bolivia",
+                "🇵🇪": "Perú",
+                "🇧🇷": "Brasil",
+                "🇲🇽": "México",
+                "🇨🇴": "Colombia",
+                "🇪🇸": "España",
+                "🌎": "Otro país"
+            }
+        },
+        "dispositivo": {
+            "titulo": "📱 Dispositivo",
+            "descripcion": "Seleccioná tu dispositivo.",
+            "roles": {
+                "📱": "Celular",
+                "💻": "PC",
+                "🎮": "Consola"
+            }
+        },
+        "edad": {
+            "titulo": "🎂 Edad",
+            "descripcion": "Seleccioná tu rango de edad.",
+            "roles": {
+                "🔵": "14-16",
+                "🟢": "16-18",
+                "🟣": "18-25"
+            }
+        },
+        "colores": {
+            "titulo": "🎨 Colores",
+            "descripcion": "Elegí el color que querés tener.",
+            "roles": {
+                "🔴": "Rojo",
+                "🟠": "Naranja",
+                "🟡": "Amarillo",
+                "🟢": "Verde",
+                "🔵": "Azul",
+                "🟣": "Violeta",
+                "🩷": "Rosa",
+                "⚪": "Blanco",
+                "⚫": "Negro"
+            }
+        }
+    }
+}
