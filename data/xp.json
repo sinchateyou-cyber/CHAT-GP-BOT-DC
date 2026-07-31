@@ -1,1 +1,8 @@
- {}
+{
+    "ID_DEL_SERVIDOR": {
+        "ID_DEL_USUARIO": {
+            "xp": 500,
+            "level": 3
+        }
+    }
+}
