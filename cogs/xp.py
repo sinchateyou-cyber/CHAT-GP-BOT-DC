@@ -28,16 +28,14 @@ XP_COOLDOWN = 60
 # RECOMPENSAS POR NIVEL
 # ============================================================
 
-LEVEL_REWARDS = {
-
-    5: "Nivel 5",
-    10: "Nivel 10",
-    15: "Nivel 15",
-    20: "Nivel 20",
-    25: "Nivel 25",
-    30: "Nivel 30",
-    40: "Nivel 40",
-    50: "Nivel 50",
+  LEVEL_REWARDS = {
+    5: "Novato",
+    10: "Activo",
+    15: "Veterano",
+    20: "Experto",
+    30: "Élite",
+    50: "Leyenda",
+}
 
 }
 
