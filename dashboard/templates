@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+    <title>Dashboard | Discord Bot</title>
+    <link
+        rel="stylesheet"
+        href="{{ url_for('static', filename='style.css') }}"
+    >
+</head>
+<body>
+    <!-- =====================================================
+         BARRA LATERAL
+    ====================================================== -->
+    <aside class="sidebar">
+        <div class="logo">
+            🤖
+            <span>Bot Dashboard</span>
+        </div>
+        <nav class="menu">
+            <button
+                class="menu-item active"
+                onclick="showSection('inicio')"
+            >
+                🏠
+                <span>Inicio</span>
+            </button>
+            <button
+                class="menu-item"
+                onclick="showSection('servidores')"
+            >
+                🖥️
+                <span>Servidores</span>
+            </button>
+            <button
+                class="menu-item"
+                onclick="showSection('estadisticas')"
+            >
+                📊
+                <span>Estadísticas</span>
+            </button>
+            <button
+                class="menu-item"
+                onclick="showSection('configuracion')"
+            >
+                ⚙️
+                <span>Configuración</span>
+            </button>
+        </nav>
+    </aside>
+    <!-- =====================================================
+         CONTENIDO PRINCIPAL
+    ====================================================== -->
+    <main class="main-content">
+        <!-- =================================================
+             HEADER
+        ================================================== -->
+        <header class="topbar">
+            <div>
+                <h1>
+                    Dashboard
+                </h1>
+                <p>
+                    Panel de control de tu bot de Discord
+                </p>
+            </div>
+            <div
+                id="connection-status"
+                class="connection-status"
+            >
+                🟡 Conectando...
+            </div>
+        </header>
+        <!-- =================================================
+             INICIO
+        ================================================== -->
+        <section
+            id="inicio"
+            class="section active-section"
+        >
+            <div class="welcome">
+                <h2>
+                    ¡Bienvenido al Dashboard! 👋
+                </h2>
+                <p>
+                    Desde este panel podrás administrar
+                    y controlar tu bot de Discord.
+                </p>
+            </div>
+            <!-- TARJETAS -->
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        🤖
+                    </div>
+                    <div>
+                        <span>
+                            Estado del bot
+                        </span>
+                        <strong id="bot-status">
+                            Cargando...
+                        </strong>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        🖥️
+                    </div>
+                    <div>
+                        <span>
+                            Servidores
+                        </span>
+                        <strong id="guild-count">
+                            0
+                        </strong>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        📡
+                    </div>
+                    <div>
+                        <span>
+                            Latencia
+                        </span>
+                        <strong id="bot-latency">
+                            0 ms
+                        </strong>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        🆔
+                    </div>
+                    <div>
+                        <span>
+                            Bot
+                        </span>
+                        <strong id="bot-name">
+                            Cargando...
+                        </strong>
+                    </div>
+                </div>
+            </div>
+            <!-- INFORMACIÓN -->
+            <div class="panel">
+                <h2>
+                    Información del bot
+                </h2>
+                <div class="info-row">
+                    <span>
+                        Nombre
+                    </span>
+                    <strong id="info-bot-name">
+                        Cargando...
+                    </strong>
+                </div>
+                <div class="info-row">
+                    <span>
+                        ID
+                    </span>
+                    <strong id="info-bot-id">
+                        Cargando...
+                    </strong>
+                </div>
+                <div class="info-row">
+                    <span>
+                        Estado
+                    </span>
+                    <strong id="info-bot-status">
+                        Cargando...
+                    </strong>
+                </div>
+            </div>
+        </section>
+        <!-- =================================================
+             SERVIDORES
+        ================================================== -->
+        <section
+            id="servidores"
+            class="section"
+        >
+            <div class="section-header">
+                <div>
+                    <h2>
+                        Mis servidores
+                    </h2>
+                    <p>
+                        Servidores donde está instalado tu bot.
+                    </p>
+                </div>
+            </div>
+            <div
+                id="guild-list"
+                class="guild-grid"
+            >
+                <div class="loading">
+                    Cargando servidores...
+                </div>
+            </div>
+        </section>
+        <!-- =================================================
+             ESTADÍSTICAS
+        ================================================== -->
+        <section
+            id="estadisticas"
+            class="section"
+        >
+            <div class="section-header">
+                <h2>
+                    Estadísticas
+                </h2>
+            </div>
+            <div class="panel">
+                <p>
+                    📊 Estadísticas del bot.
+                </p>
+                <p>
+                    Servidores conectados:
+                    <strong id="stats-guilds">
+                        0
+                    </strong>
+                </p>
+            </div>
+        </section>
+        <!-- =================================================
+             CONFIGURACIÓN
+        ================================================== -->
+        <section
+            id="configuracion"
+            class="section"
+        >
+            <div class="section-header">
+                <h2>
+                    Configuración
+                </h2>
+            </div>
+            <div class="panel">
+                <p>
+                    ⚙️ Las opciones de configuración
+                    estarán disponibles próximamente.
+                </p>
+            </div>
+        </section>
+    </main>
+    <!-- =====================================================
+         JAVASCRIPT
+    ====================================================== -->
+    <script
+        src="{{ url_for('static', filename='script.js') }}"
+    ></script>
+</body>
+</html>
