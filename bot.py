@@ -947,6 +947,7 @@ class MiBot(
             # INFORMACIÓN
             "cogs.botinfo",
             "cogs.config",
+            "cogs.dashboard",
             # PERSONALIZACIÓN
             "cogs.addemoji",
             "cogs.social",
