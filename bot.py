@@ -857,7 +857,6 @@ class MiBot(
             # CANALES
             "cogs.canales",
             # SERVIDOR
-            "cogs.reglas",
             "cogs.bienvenida",
             "cogs.logs",
             "cogs.tickets",
@@ -889,7 +888,8 @@ class MiBot(
             # MÚSICA
             "cogs.play",
             "cogs.stop",
-            "cogs.leave"
+            "cogs.leave",
+            "cogs.reglas"
         ]
         # ====================================================
         # CARGAR COGS
