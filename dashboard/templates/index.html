@@ -1,0 +1,508 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+    <title>
+        Dashboard | Discord Bot
+    </title>
+    <link
+        rel="stylesheet"
+        href="{{ url_for('static', filename='style.css') }}"
+    >
+</head>
+<body>
+<!-- ============================================================
+     BARRA LATERAL
+============================================================ -->
+<aside class="sidebar">
+    <div class="logo">
+        🤖
+        <span>
+            Bot Dashboard
+        </span>
+    </div>
+    <nav class="menu">
+        <button
+            class="menu-item active"
+            onclick="showSection('inicio')"
+        >
+            🏠
+            <span>
+                Inicio
+            </span>
+        </button>
+        <button
+            class="menu-item"
+            onclick="showSection('servidores')"
+        >
+            🖥️
+            <span>
+                Servidores
+            </span>
+        </button>
+        <button
+            class="menu-item"
+            onclick="showSection('seguridad')"
+        >
+            🛡️
+            <span>
+                Seguridad
+            </span>
+        </button>
+        <button
+            class="menu-item"
+            onclick="showSection('estadisticas')"
+        >
+            📊
+            <span>
+                Estadísticas
+            </span>
+        </button>
+        <button
+            class="menu-item"
+            onclick="showSection('configuracion')"
+        >
+            ⚙️
+            <span>
+                Configuración
+            </span>
+        </button>
+    </nav>
+    <!-- USUARIO -->
+    <div class="sidebar-user">
+        <div
+            id="sidebar-user-avatar"
+            class="user-avatar"
+        >
+            👤
+        </div>
+        <div class="user-info">
+            <strong id="sidebar-user-name">
+                Invitado
+            </strong>
+            <span id="sidebar-user-status">
+                No conectado
+            </span>
+        </div>
+    </div>
+</aside>
+<!-- ============================================================
+     CONTENIDO PRINCIPAL
+============================================================ -->
+<main class="main-content">
+<!-- ============================================================
+     HEADER
+============================================================ -->
+<header class="topbar">
+    <div>
+        <h1>
+            Dashboard
+        </h1>
+        <p>
+            Panel de control de tu bot de Discord
+        </p>
+    </div>
+    <div class="topbar-actions">
+        <div
+            id="connection-status"
+            class="connection-status"
+        >
+            🟡 Conectando...
+        </div>
+        <div
+            id="user-area"
+            class="user-area"
+        >
+            <a
+                href="/login"
+                id="login-button"
+                class="login-button"
+            >
+                🔐 Iniciar sesión con Discord
+            </a>
+            <div
+                id="logged-user"
+                class="logged-user"
+                style="display: none;"
+            >
+                <img
+                    id="user-avatar"
+                    src="https://cdn.discordapp.com/embed/avatars/0.png"
+                    alt="Avatar"
+                >
+                <span id="user-name">
+                    Usuario
+                </span>
+                <a
+                    href="/logout"
+                    class="logout-button"
+                >
+                    Salir
+                </a>
+            </div>
+        </div>
+    </div>
+</header>
+<!-- ============================================================
+     INICIO
+============================================================ -->
+<section
+    id="inicio"
+    class="section active-section"
+>
+    <div class="welcome">
+        <h2>
+            ¡Bienvenido al Dashboard! 👋
+        </h2>
+        <p>
+            Desde este panel podrás administrar
+            y controlar tu bot de Discord.
+        </p>
+    </div>
+    <!-- ESTADÍSTICAS -->
+    <div class="stats-grid">
+        <div class="stat-card">
+            <div class="stat-icon">
+                🤖
+            </div>
+            <div>
+                <span>
+                    Estado del bot
+                </span>
+                <strong id="bot-status">
+                    Cargando...
+                </strong>
+            </div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-icon">
+                🖥️
+            </div>
+            <div>
+                <span>
+                    Servidores
+                </span>
+                <strong id="guild-count">
+                    0
+                </strong>
+            </div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-icon">
+                📡
+            </div>
+            <div>
+                <span>
+                    Latencia
+                </span>
+                <strong id="bot-latency">
+                    0 ms
+                </strong>
+            </div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-icon">
+                🆔
+            </div>
+            <div>
+                <span>
+                    Bot
+                </span>
+                <strong id="bot-name">
+                    Cargando...
+                </strong>
+            </div>
+        </div>
+    </div>
+    <!-- INFORMACIÓN DEL BOT -->
+    <div class="panel">
+        <h2>
+            Información del bot
+        </h2>
+        <div class="info-row">
+            <span>
+                Nombre
+            </span>
+            <strong id="info-bot-name">
+                Cargando...
+            </strong>
+        </div>
+        <div class="info-row">
+            <span>
+                ID
+            </span>
+            <strong id="info-bot-id">
+                Cargando...
+            </strong>
+        </div>
+        <div class="info-row">
+            <span>
+                Estado
+            </span>
+            <strong id="info-bot-status">
+                Cargando...
+            </strong>
+        </div>
+    </div>
+</section>
+<!-- ============================================================
+     SERVIDORES
+============================================================ -->
+<section
+    id="servidores"
+    class="section"
+>
+    <div class="section-header">
+        <h2>
+            Mis servidores
+        </h2>
+        <p>
+            Servidores donde está instalado tu bot.
+        </p>
+    </div>
+    <div
+        id="guild-list"
+        class="guild-grid"
+    >
+        <div class="loading">
+            Cargando servidores...
+        </div>
+    </div>
+</section>
+<!-- ============================================================
+     SEGURIDAD
+============================================================ -->
+<section
+    id="seguridad"
+    class="section"
+>
+    <div class="section-header">
+        <h2>
+            🛡️ Seguridad
+        </h2>
+        <p>
+            Configurá los sistemas de protección de tu servidor.
+        </p>
+    </div>
+    <!-- SELECCIONAR SERVIDOR -->
+    <div class="panel">
+        <h2>
+            🖥️ Seleccionar servidor
+        </h2>
+        <p>
+            Elegí el servidor donde querés configurar la seguridad.
+        </p>
+        <select
+            id="security-guild-select"
+            class="guild-select"
+        >
+            <option value="">
+                Seleccioná un servidor...
+            </option>
+        </select>
+        <div
+            id="security-message"
+            class="security-message"
+        >
+        </div>
+    </div>
+    <!-- SEGURIDAD -->
+    <div
+        id="security-controls"
+        class="security-controls"
+        style="display: none;"
+    >
+        <!-- ANTI-SPAM -->
+        <div class="security-card">
+            <div class="security-icon">
+                🛡️
+            </div>
+            <div class="security-info">
+                <h3>
+                    Anti-Spam
+                </h3>
+                <p>
+                    Detecta usuarios que envían
+                    demasiados mensajes rápidamente.
+                </p>
+            </div>
+            <div class="security-action">
+                <span
+                    id="antispam-status"
+                    class="security-status"
+                >
+                    Desactivado
+                </span>
+                <button
+                    id="antispam-toggle"
+                    class="security-button"
+                    onclick="toggleSecurity('antispam')"
+                >
+                    Activar
+                </button>
+            </div>
+        </div>
+        <!-- ANTI-FLOOD -->
+        <div class="security-card">
+            <div class="security-icon">
+                🌊
+            </div>
+            <div class="security-info">
+                <h3>
+                    Anti-Flood
+                </h3>
+                <p>
+                    Detecta mensajes enviados
+                    masivamente en poco tiempo.
+                </p>
+            </div>
+            <div class="security-action">
+                <span
+                    id="antiflood-status"
+                    class="security-status"
+                >
+                    Desactivado
+                </span>
+                <button
+                    id="antiflood-toggle"
+                    class="security-button"
+                    onclick="toggleSecurity('antiflood')"
+                >
+                    Activar
+                </button>
+            </div>
+        </div>
+        <!-- ANTI-LINK -->
+        <div class="security-card">
+            <div class="security-icon">
+                🔗
+            </div>
+            <div class="security-info">
+                <h3>
+                    Anti-Link
+                </h3>
+                <p>
+                    Elimina automáticamente enlaces
+                    enviados por usuarios.
+                </p>
+            </div>
+            <div class="security-action">
+                <span
+                    id="antilink-status"
+                    class="security-status"
+                >
+                    Desactivado
+                </span>
+                <button
+                    id="antilink-toggle"
+                    class="security-button"
+                    onclick="toggleSecurity('antilink')"
+                >
+                    Activar
+                </button>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- ============================================================
+     ESTADÍSTICAS
+============================================================ -->
+<section
+    id="estadisticas"
+    class="section"
+>
+    <div class="section-header">
+        <h2>
+            📊 Estadísticas
+        </h2>
+        <p>
+            Información general de tu bot.
+        </p>
+    </div>
+    <div class="stats-grid">
+        <div class="stat-card">
+            <div class="stat-icon">
+                🖥️
+            </div>
+            <div>
+                <span>
+                    Servidores conectados
+                </span>
+                <strong id="stats-guilds">
+                    0
+                </strong>
+            </div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-icon">
+                📡
+            </div>
+            <div>
+                <span>
+                    Latencia
+                </span>
+                <strong id="stats-latency">
+                    0 ms
+                </strong>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- ============================================================
+     CONFIGURACIÓN
+============================================================ -->
+<section
+    id="configuracion"
+    class="section"
+>
+    <div class="section-header">
+        <h2>
+            ⚙️ Configuración
+        </h2>
+        <p>
+            Configuración general del Dashboard.
+        </p>
+    </div>
+    <div class="panel">
+        <h2>
+            Cuenta de Discord
+        </h2>
+        <div
+            id="account-info"
+        >
+            <p>
+                Comprobando sesión...
+            </p>
+        </div>
+        <div class="config-actions">
+            <a
+                href="/login"
+                id="config-login"
+                class="login-button"
+            >
+                🔐 Iniciar sesión
+            </a>
+            <a
+                href="/logout"
+                id="config-logout"
+                class="logout-button"
+                style="display: none;"
+            >
+                🚪 Cerrar sesión
+            </a>
+        </div>
+    </div>
+</section>
+</main>
+<!-- ============================================================
+     JAVASCRIPT
+============================================================ -->
+<script
+    src="{{ url_for('static', filename='script.js') }}"
+></script>
+</body>
+</html>
