@@ -89,6 +89,7 @@ class MiBot(commands.Bot):
             "cogs.config",
             "cogs.social",
             "cogs.key",
+            "cogs.status",
             # =================================================
             # SISTEMA DE XP
             # =================================================
