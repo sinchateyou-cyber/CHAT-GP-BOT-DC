@@ -1659,107 +1659,119 @@ async def on_app_command_error(
 # ============================================================
 # MAIN
 # ============================================================
-
-# ============================================================
-# MAIN
-# ============================================================
 async def main():
+
     print("=" * 60)
     print("🚀 INICIANDO BOT")
     print("=" * 60)
-    # --------------------------------------------------------
-    # COMPROBAR TOKEN
-    # --------------------------------------------------------
+
     if not TOKEN:
-        print("❌ ERROR FATAL")
-        print("❌ No existe la variable DISCORD_TOKEN.")
-        print("❌ Revisá Environment Variables en Render.")
+        print("❌ FALTA DISCORD_TOKEN")
         return
-    print("🔑 DISCORD_TOKEN encontrado.")
-    print(f"🔑 Longitud del token: {len(TOKEN)} caracteres")
-    # --------------------------------------------------------
-    # INICIAR FLASK
-    # --------------------------------------------------------
+
+    print("🔑 TOKEN ENCONTRADO")
+    print(f"🔑 Longitud: {len(TOKEN)}")
+
+    # Mostrar versión de discord.py
+    print(f"📦 discord.py: {discord.__version__}")
+
+    # Iniciar Flask
+    web_thread = threading.Thread(
+        target=run_web,
+        daemon=True
+    )
+
+    web_thread.start()
+
+    print("🌐 Flask iniciado")
+    print(f"🌐 Puerto: {PORT}")
+
+    # Prueba de conexión HTTP con Discord
+    print("🌐 Probando conexión HTTP con Discord...")
+
     try:
-        web_thread = threading.Thread(
-            target=run_web,
-            daemon=True
+
+        response = requests.get(
+            "https://discord.com/api/v10/gateway",
+            timeout=15
         )
-        web_thread.start()
-        print("🌐 Flask iniciado correctamente.")
-        print(f"🌐 Puerto: {PORT}")
+
+        print(
+            f"🌐 Discord HTTP Status: "
+            f"{response.status_code}"
+        )
+
+        print(
+            f"🌐 Discord Response: "
+            f"{response.text[:300]}"
+        )
+
     except Exception as error:
-        print("❌ ERROR INICIANDO FLASK")
-        print(f"Tipo: {type(error).__name__}")
-        print(f"Error: {error}")
-        import traceback
-        traceback.print_exc()
-    # --------------------------------------------------------
-    # INICIAR DISCORD
-    # --------------------------------------------------------
+
+        print("❌ ERROR HTTP DISCORD")
+
+        print(
+            f"Tipo: {type(error).__name__}"
+        )
+
+        print(
+            f"Error: {error}"
+        )
+
+    # Conectar bot
     print("=" * 60)
-    print("🤖 INTENTANDO CONECTAR CON DISCORD...")
+    print("🤖 CONECTANDO AL DISCORD GATEWAY...")
     print("=" * 60)
+
     try:
+
         await bot.start(TOKEN)
-    except discord.LoginFailure as error:
-        print("=" * 60)
-        print("❌ LOGIN FAILURE")
-        print("❌ El token de Discord es inválido.")
-        print(f"Detalles: {error}")
-        print("=" * 60)
-    except discord.PrivilegedIntentsRequired as error:
-        print("=" * 60)
-        print("❌ PRIVILEGED INTENTS ERROR")
-        print("❌ Discord rechazó los intents privilegiados.")
-        print("❌ Revisá Message Content Intent y Server Members Intent.")
-        print(f"Detalles: {error}")
-        print("=" * 60)
-    except discord.HTTPException as error:
-        print("=" * 60)
-        print("❌ DISCORD HTTP ERROR")
-        print(f"Status: {error.status}")
-        print(f"Detalles: {error}")
-        print("=" * 60)
-    except discord.ConnectionClosed as error:
-        print("=" * 60)
-        print("❌ DISCORD CONNECTION CLOSED")
-        print(f"Detalles: {error}")
-        print("=" * 60)
-    except asyncio.TimeoutError as error:
-        print("=" * 60)
-        print("❌ TIMEOUT")
-        print("❌ Discord tardó demasiado en responder.")
-        print(f"Detalles: {error}")
-        print("=" * 60)
+
     except Exception as error:
+
         print("=" * 60)
-        print("❌ ERROR FATAL DEL BOT")
-        print(f"Tipo: {type(error).__name__}")
-        print(f"Detalles: {error}")
+        print("❌ ERROR CONECTANDO CON DISCORD")
         print("=" * 60)
+
+        print(
+            f"Tipo: {type(error).__name__}"
+        )
+
+        print(
+            f"Error: {error}"
+        )
+
         import traceback
+
         traceback.print_exc()
+
     finally:
+
         print("=" * 60)
-        print("🛑 LA CONEXIÓN DEL BOT TERMINÓ")
+        print("🛑 BOT DESCONECTADO")
         print("=" * 60)
-# ============================================================
-# EJECUTAR
-# ============================================================
+
+
 if __name__ == "__main__":
-    print("=" * 60)
-    print("📡 EJECUTANDO MAIN.PY")
-    print("=" * 60)
+
     try:
+
         asyncio.run(main())
-    except KeyboardInterrupt:
-        print("🛑 Bot detenido manualmente.")
+
     except Exception as error:
+
         print("=" * 60)
-        print("❌ ERROR FUERA DE MAIN")
-        print(f"Tipo: {type(error).__name__}")
-        print(f"Detalles: {error}")
+        print("❌ ERROR FATAL")
         print("=" * 60)
+
+        print(
+            f"Tipo: {type(error).__name__}"
+        )
+
+        print(
+            f"Error: {error}"
+        )
+
         import traceback
+
         traceback.print_exc()
