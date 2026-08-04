@@ -1660,87 +1660,106 @@ async def on_app_command_error(
 # MAIN
 # ============================================================
 
+# ============================================================
+# MAIN
+# ============================================================
 async def main():
-
+    print("=" * 60)
+    print("🚀 INICIANDO BOT")
+    print("=" * 60)
+    # --------------------------------------------------------
+    # COMPROBAR TOKEN
+    # --------------------------------------------------------
     if not TOKEN:
-
-        print(
-            "❌ ERROR: Falta DISCORD_TOKEN."
-        )
-
+        print("❌ ERROR FATAL")
+        print("❌ No existe la variable DISCORD_TOKEN.")
+        print("❌ Revisá Environment Variables en Render.")
         return
-
-
-    print(
-        "🔑 Token encontrado."
-    )
-
-
-    # ========================================================
-    # INICIAR FLASK EN SEGUNDO PLANO
-    # ========================================================
-
-    web_thread = threading.Thread(
-
-        target=run_web,
-
-        daemon=True
-    )
-
-    web_thread.start()
-
-
-    # ========================================================
-    # INICIAR DISCORD
-    # ========================================================
-
-    print(
-        "🚀 Iniciando bot..."
-    )
-
-
+    print("🔑 DISCORD_TOKEN encontrado.")
+    print(f"🔑 Longitud del token: {len(TOKEN)} caracteres")
+    # --------------------------------------------------------
+    # INICIAR FLASK
+    # --------------------------------------------------------
     try:
-
-        await bot.start(
-            TOKEN
+        web_thread = threading.Thread(
+            target=run_web,
+            daemon=True
         )
-
-
-    except discord.LoginFailure:
-
-        print(
-            "❌ TOKEN INVÁLIDO."
-        )
-
-
+        web_thread.start()
+        print("🌐 Flask iniciado correctamente.")
+        print(f"🌐 Puerto: {PORT}")
     except Exception as error:
-
-        print(
-            "❌ ERROR FATAL:"
-        )
-
-        print(
-
-            f"{type(error).__name__}: "
-            f"{error}"
-        )
-
-
+        print("❌ ERROR INICIANDO FLASK")
+        print(f"Tipo: {type(error).__name__}")
+        print(f"Error: {error}")
+        import traceback
+        traceback.print_exc()
+    # --------------------------------------------------------
+    # INICIAR DISCORD
+    # --------------------------------------------------------
+    print("=" * 60)
+    print("🤖 INTENTANDO CONECTAR CON DISCORD...")
+    print("=" * 60)
+    try:
+        await bot.start(TOKEN)
+    except discord.LoginFailure as error:
+        print("=" * 60)
+        print("❌ LOGIN FAILURE")
+        print("❌ El token de Discord es inválido.")
+        print(f"Detalles: {error}")
+        print("=" * 60)
+    except discord.PrivilegedIntentsRequired as error:
+        print("=" * 60)
+        print("❌ PRIVILEGED INTENTS ERROR")
+        print("❌ Discord rechazó los intents privilegiados.")
+        print("❌ Revisá Message Content Intent y Server Members Intent.")
+        print(f"Detalles: {error}")
+        print("=" * 60)
+    except discord.HTTPException as error:
+        print("=" * 60)
+        print("❌ DISCORD HTTP ERROR")
+        print(f"Status: {error.status}")
+        print(f"Detalles: {error}")
+        print("=" * 60)
+    except discord.ConnectionClosed as error:
+        print("=" * 60)
+        print("❌ DISCORD CONNECTION CLOSED")
+        print(f"Detalles: {error}")
+        print("=" * 60)
+    except asyncio.TimeoutError as error:
+        print("=" * 60)
+        print("❌ TIMEOUT")
+        print("❌ Discord tardó demasiado en responder.")
+        print(f"Detalles: {error}")
+        print("=" * 60)
+    except Exception as error:
+        print("=" * 60)
+        print("❌ ERROR FATAL DEL BOT")
+        print(f"Tipo: {type(error).__name__}")
+        print(f"Detalles: {error}")
+        print("=" * 60)
+        import traceback
+        traceback.print_exc()
+    finally:
+        print("=" * 60)
+        print("🛑 LA CONEXIÓN DEL BOT TERMINÓ")
+        print("=" * 60)
 # ============================================================
 # EJECUTAR
 # ============================================================
-
 if __name__ == "__main__":
-
+    print("=" * 60)
+    print("📡 EJECUTANDO MAIN.PY")
+    print("=" * 60)
     try:
-
-        asyncio.run(
-            main()
-        )
-
-
+        asyncio.run(main())
     except KeyboardInterrupt:
-
-        print(
-            "🛑 Bot detenido."
-        )
+        print("🛑 Bot detenido manualmente.")
+    except Exception as error:
+        print("=" * 60)
+        print("❌ ERROR FUERA DE MAIN")
+        print(f"Tipo: {type(error).__name__}")
+        print(f"Detalles: {error}")
+        print("=" * 60)
+        import traceback
+        traceback.print_exc()
