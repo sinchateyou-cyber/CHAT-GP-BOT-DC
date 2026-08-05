@@ -812,7 +812,6 @@ class MiBot(
             "cogs.social",
             "cogs.key",
             "cogs.status",
-            "cogs.xp",
             "cogs.play",
             "cogs.stop",
             "cogs.leave",
