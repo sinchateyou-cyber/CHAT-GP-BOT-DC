@@ -818,7 +818,8 @@ class MiBot(
             "cogs.leave",
             "cogs.reglas",
             "cogs.configuracionall",
-            "cogs.say"
+            "cogs.say",
+            "cogs.multimedia"
         ]
         cargados = 0
         errores = 0
