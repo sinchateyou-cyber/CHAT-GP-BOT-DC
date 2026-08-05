@@ -743,9 +743,13 @@ def run_web():
 # ============================================================
 # INTENTS
 # ============================================================
+
+
 intents = discord.Intents.default()
+
 intents.message_content = True
 intents.members = True
+intents.presences = True
 intents.voice_states = True
 # ============================================================
 # BOT
@@ -1057,9 +1061,16 @@ async def on_ready():
         "🎭 Reaction Roles activados."
     )
     print(
-        "💬 Message Content Intent activado."
-    )
-    print("=" * 60)
+    "💬 Message Content Intent activado."
+)
+
+print(
+    "👥 Members Intent activado."
+)
+
+print(
+    "🟣 Presence Intent activado."
+)
 # ============================================================
 # ERROR PREFIX
 # ============================================================
