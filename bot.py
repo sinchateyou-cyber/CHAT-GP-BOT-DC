@@ -796,7 +796,6 @@ class MiBot(
             "cogs.tickets",
             "cogs.verification",
             "cogs.server_setup",
-            "cogs.say",
             "cogs.help",
             "cogs.owner",
             "cogs.invite",
@@ -814,7 +813,8 @@ class MiBot(
             "cogs.stop",
             "cogs.leave",
             "cogs.reglas",
-            "cogs.configuracionall"
+            "cogs.configuracionall",
+            "cogs.say"
         ]
         cargados = 0
         errores = 0
