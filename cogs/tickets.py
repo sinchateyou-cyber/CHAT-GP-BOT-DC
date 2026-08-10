@@ -4,15 +4,13 @@ from discord import app_commands
 # ============================================================
 # CONFIGURACIÓN
 # ============================================================
-STAFF_ROLE_NAME = "Staff"
+STAFF_ROLE_ID = "1534413080698683474"
 TICKET_CATEGORY_NAME = "🎫・TICKETS"
 # ============================================================
 # UTILIDADES
 # ============================================================
 def get_staff_role(guild: discord.Guild):
-    return discord.utils.get(
-        guild.roles,
-        name=STAFF_ROLE_NAME
+    return guild.get_role(STAFF_ROLE_ID)
     )
 def get_ticket_category(guild: discord.Guild):
     return discord.utils.get(
