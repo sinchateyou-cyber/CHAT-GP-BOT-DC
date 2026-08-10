@@ -1021,8 +1021,8 @@ async def on_connect():
     )
     print("=" * 60)
 # ============================================================
-# EVENTO READY
-# ============================================================
+# EVENTO
+
 @bot.event
 async def on_ready():
     print("")
@@ -1048,29 +1048,14 @@ async def on_ready():
         f"{bot.status}"
     )
     print("=" * 60)
-    print(
-        "✅ Dashboard conectado."
-    )
-    print(
-        "🔐 OAuth2 activado."
-    )
-    print(
-        "🛡️ Seguridad activada."
-    )
-    print(
-        "🎭 Reaction Roles activados."
-    )
-    print(
-    "💬 Message Content Intent activado."
-)
 
-print(
-    "👥 Members Intent activado."
-)
-
-print(
-    "🟣 Presence Intent activado."
-)
+    print("✅ Dashboard conectado.")
+    print("🔐 OAuth2 activado.")
+    print("🛡️ Seguridad activada.")
+    print("🎭 Reaction Roles activados.")
+    print("💬 Message Content Intent activado.")
+    print("👥 Members Intent activado.")
+    print("🟣 Presence Intent activado.")
 # ============================================================
 # ERROR PREFIX
 # ============================================================
