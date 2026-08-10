@@ -156,7 +156,6 @@ class MiBot(commands.Bot):
             "cogs.canales",
             "cogs.bienvenida",
             "cogs.logs",
-            "cogs.tickets",
 
             "cogs.verification",
             "cogs.server_setup",
@@ -189,7 +188,8 @@ class MiBot(commands.Bot):
             "cogs.mute",
             "cogs.interacciones",
             "cogs.media_rol",
-            "cogs.reactionroles"
+            "cogs.reactionroles",
+            "cogs.tickets"
         ]
 
         print("")
