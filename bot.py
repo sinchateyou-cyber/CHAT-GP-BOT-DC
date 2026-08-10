@@ -180,7 +180,6 @@ class MiBot(commands.Bot):
             "cogs.leave",
 
             "cogs.reglas",
-            "cogs.configuracionall",
 
             "cogs.say",
             "cogs.filtro",
