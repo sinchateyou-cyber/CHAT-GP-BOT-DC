@@ -858,7 +858,8 @@ class MiBot(commands.Bot):
             "cogs.configuracionall",
 
             "cogs.say",
-            "cogs.filtro"
+            "cogs.filtro",
+            "cogs.tickets"
         ]
 
 
