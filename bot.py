@@ -391,99 +391,67 @@ class MiBot(commands.Bot):
 
     async def sync_commands(self):
 
+    print("")
+    print("=" * 70)
+    print("🔄 SINCRONIZANDO SLASH COMMANDS")
+    print("=" * 70)
+
+    try:
+
+        print(
+            f"🏠 Guild configurada: {GUILD_ID}"
+        )
+
+        guild = discord.Object(
+            id=GUILD_ID
+        )
+
+        # Limpiamos los comandos de ese servidor
+        self.tree.clear_commands(
+            guild=guild
+        )
+
+        # Copiamos los comandos globales actuales
+        self.tree.copy_global_to(
+            guild=guild
+        )
+
+        # Sincronizamos directamente con el servidor
+        synced = await self.tree.sync(
+            guild=guild
+        )
+
         print("")
+        print(
+            f"✅ {len(synced)} COMANDOS SINCRONIZADOS"
+        )
+
+        for command in synced:
+
+            print(
+                f"   ⚡ /{command.name}"
+            )
+
         print("=" * 70)
-        print("🔄 SINCRONIZANDO SLASH COMMANDS")
-        print("=" * 70)
 
-        try:
-
-            guild = discord.Object(
-                id=GUILD_ID
-            )
-
-            print(
-                f"⚡ Guild principal: {GUILD_ID}"
-            )
-
-            self.tree.copy_global_to(
-                guild=guild
-            )
-
-            synced = await self.tree.sync(
-                guild=guild
-            )
-
-            print("")
-            print(
-                f"✅ COMANDOS SINCRONIZADOS: "
-                f"{len(synced)}"
-            )
-
-            for command in synced:
-
-                print(
-                    f"   /{command.name}"
-                )
-
-        except Exception as error:
-
-            print("")
-            print(
-                "❌ ERROR SINCRONIZANDO "
-                "GUILD PRINCIPAL"
-            )
-
-            print(
-                f"{type(error).__name__}: "
-                f"{error}"
-            )
-
-            traceback.print_exc()
-
-        if TEST_GUILD_ID:
-
-            try:
-
-                test_id = int(
-                    TEST_GUILD_ID
-                )
-
-                test_guild = discord.Object(
-                    id=test_id
-                )
-
-                self.tree.copy_global_to(
-                    guild=test_guild
-                )
-
-                synced_test = await self.tree.sync(
-                    guild=test_guild
-                )
-
-                print("")
-                print(
-                    f"✅ TEST GUILD {test_id}: "
-                    f"{len(synced_test)} comandos"
-                )
-
-            except Exception as error:
-
-                print("")
-                print(
-                    "❌ ERROR TEST_GUILD_ID"
-                )
-
-                print(
-                    f"{type(error).__name__}: "
-                    f"{error}"
-                )
+    except Exception as error:
 
         print("")
         print("=" * 70)
-        print("🌎 NO SE HACE SYNC GLOBAL")
+        print("❌ ERROR SINCRONIZANDO")
         print("=" * 70)
 
+        print(
+            f"Tipo: {type(error).__name__}"
+        )
+
+        print(
+            f"Error: {error}"
+        )
+
+        traceback.print_exc()
+
+        print("=" * 70)
 
 # ============================================================
 # CREAR BOT
