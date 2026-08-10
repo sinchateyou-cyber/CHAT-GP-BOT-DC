@@ -548,82 +548,114 @@ class MiBot(commands.Bot):
     # SETUP HOOK
     # ========================================================
     async def setup_hook(self):
+    print("")
+    print("=" * 60)
+    print("📦 INICIANDO CARGA DE COGS")
+    print("=" * 60)
+
+    extensiones = [
+        "cogs.lock",
+        "cogs.unlock",
+        "cogs.ban",
+        "cogs.kick",
+        "cogs.timeout",
+        "cogs.untimeout",
+        "cogs.clear",
+        "cogs.antilink",
+        "cogs.antiflood",
+        "cogs.antispam",
+        "cogs.afk",
+        "cogs.avatar",
+        "cogs.nick",
+        "cogs.utilidades",
+        "cogs.addrole",
+        "cogs.createrole",
+        "cogs.deleterole",
+        "cogs.reactionroles",
+        "cogs.canales",
+        "cogs.bienvenida",
+        "cogs.logs",
+        "cogs.tickets",
+        "cogs.verification",
+        "cogs.server_setup",
+        "cogs.help",
+        "cogs.owner",
+        "cogs.invite",
+        "cogs.invites",
+        "cogs.invites_command",
+        "cogs.invites_leaderboard",
+        "cogs.botinfo",
+        "cogs.config",
+        "cogs.addemoji",
+        "cogs.social",
+        "cogs.key",
+        "cogs.status",
+        "cogs.play",
+        "cogs.stop",
+        "cogs.leave",
+        "cogs.reglas",
+        "cogs.configuracionall",
+        "cogs.say",
+        "cogs.filtro"
+    ]
+
+    cargados = 0
+    errores = 0
+
+    for extension in extensiones:
+        try:
+            await self.load_extension(extension)
+            cargados += 1
+            print(f"✅ Cargado: {extension}")
+
+        except Exception as error:
+            errores += 1
+            print(f"❌ ERROR CARGANDO: {extension}")
+            print(f"   └─ {type(error).__name__}: {error}")
+
+    print("=" * 60)
+    print(f"📦 Cogs cargados: {cargados}")
+    print(f"❌ Cogs con errores: {errores}")
+    print("=" * 60)
+
+    # ========================================================
+    # SINCRONIZAR SLASH COMMANDS EN TU SERVIDOR
+    # ========================================================
+
+    GUILD_ID = 1534290216418938891
+
+    try:
+        guild = discord.Object(id=GUILD_ID)
+
         print("")
         print("=" * 60)
-        print("📦 INICIANDO CARGA DE COGS")
+        print("🔄 SINCRONIZANDO SLASH COMMANDS")
+        print(f"🏠 SERVIDOR: {GUILD_ID}")
         print("=" * 60)
-        extensiones = [
-            "cogs.lock",
-            "cogs.unlock",
-            "cogs.ban",
-            "cogs.kick",
-            "cogs.timeout",
-            "cogs.untimeout",
-            "cogs.clear",
-            "cogs.antilink",
-            "cogs.antiflood",
-            "cogs.antispam",
-            "cogs.afk",
-            "cogs.avatar",
-            "cogs.nick",
-            "cogs.utilidades",
-            "cogs.addrole",
-            "cogs.createrole",
-            "cogs.deleterole",
-            "cogs.reactionroles",
-            "cogs.canales",
-            "cogs.bienvenida",
-            "cogs.logs",
-            "cogs.tickets",
-            "cogs.verification",
-            "cogs.server_setup",
-            "cogs.help",
-            "cogs.owner",
-            "cogs.invite",
-            "cogs.invites",
-            "cogs.invites_command",
-            "cogs.invites_leaderboard",
-            "cogs.botinfo",
-            "cogs.config",
-            "cogs.addemoji",
-            "cogs.social",
-            "cogs.key",
-            "cogs.status",
-            "cogs.play",
-            "cogs.stop",
-            "cogs.leave",
-            "cogs.reglas",
-            "cogs.configuracionall",
-            "cogs.say",
-            "cogs.filtro"
-        ]
-        cargados = 0
-        errores = 0
-        for extension in extensiones:
-            try:
-                await self.load_extension(extension)
-                cargados += 1
-                print(
-                    f"✅ Cargado: {extension}"
-                )
-            except Exception as error:
-                errores += 1
-                print(
-                    f"❌ ERROR CARGANDO: {extension}"
-                )
-                print(
-                    f"   └─ "
-                    f"{type(error).__name__}: "
-                    f"{error}"
-                )
-        print("=" * 60)
+
+        # Copia los comandos globales al servidor
+        self.tree.copy_global_to(guild=guild)
+
+        # Sincroniza inmediatamente
+        synced = await self.tree.sync(guild=guild)
+
         print(
-            f"📦 Cogs cargados: {cargados}"
+            f"✅ {len(synced)} SLASH COMMANDS "
+            f"SINCRONIZADOS EN EL SERVIDOR"
         )
-        print(
-            f"❌ Cogs con errores: {errores}"
-        )
-        print("=" * 60)
+
+        print("")
+        print("📋 COMANDOS:")
+
+        for command in synced:
+            print(f"   /{command.name}")
+
+    except Exception as error:
+        print("")
+        print("❌ ERROR SINCRONIZANDO SLASH COMMANDS")
+        print(f"{type(error).__name__}: {error}")
+
+    print("=" * 60)
         # ====================================================
         # REACTION ROLES
         # ====================================================
