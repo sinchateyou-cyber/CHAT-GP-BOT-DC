@@ -79,8 +79,6 @@ class MiBot(commands.Bot):
         print("=" * 70)
         # 1. Cargar todos los cogs
         await self.load_all_cogs()
-        # 2. Verificar ticket
-        await self.ensure_ticket_command()
         # 3. Cargar botones persistentes
         await self.load_persistent_views()
         # 4. Mostrar comandos
@@ -184,25 +182,7 @@ class MiBot(commands.Bot):
             f"{len(self.cogs_failed)}"
         )
         print("=" * 70)
-    # ========================================================
-    # ASEGURAR COMANDO /TICKET
-    # ========================================================
-    async def ensure_ticket_command(self):
-        print("")
-        print("=" * 70)
-        print("🎫 VERIFICANDO SISTEMA DE TICKETS")
-        print("=" * 70)
-        existing_ticket = self.tree.get_command(
-            "ticket"
-        )
-        if existing_ticket is not None:
-            print(
-                "✅ /ticket encontrado en el árbol de comandos."
-            )
-            return
-        print(
-            "⚠️ /ticket no está registrado."
-        )
+    
         # Intentamos importar TicketView
         try:
             from cogs.tickets import TicketView
@@ -280,91 +260,140 @@ class MiBot(commands.Bot):
         # TICKETS
         # ====================================================
         try:
-            from cogs.tickets import TicketView
-            self.add_view(
-                TicketView()
-            )
-            print(
-                "✅ View persistente: Tickets"
-            )
-        except Exception as error:
-            print(
-                f"❌ Error cargando Tickets: {error}"
-            )
-            traceback.print_exc()
+        from cogs.tickets import (
+            TicketView,
+            CloseTicketView
+        )
+
+        self.add_view(
+            TicketView()
+        )
+
+        self.add_view(
+            CloseTicketView()
+        )
+
+        print("✅ View persistente: TicketView")
+        print("✅ View persistente: CloseTicketView")
+
+    except Exception as error:
+
+        print(
+            f"❌ Error cargando Views de tickets: "
+            f"{type(error).__name__}: {error}"
+        )
+
+        traceback.print_exc()
+
         # ====================================================
         # REACTION ROLES
         # ====================================================
         try:
-            from cogs.reactionroles import RoleView
-            if not os.path.exists("data/roles.json"):
-                print(
-                    "⚠️ data/roles.json no existe."
-                )
-            else:
-                with open(
-                    "data/roles.json",
-                    "r",
-                    encoding="utf-8"
-                ) as file:
-                    roles_config = json.load(file)
-                guild_config = roles_config.get(
-                    str(GUILD_ID),
-                    {}
-                )
-                categorias = guild_config.get(
-                    "categorias",
-                    {}
-                )
-                if not categorias:
-                    print(
-                        "⚠️ No hay categorías de roles configuradas."
-                    )
-                else:
-                    for categoria, datos in categorias.items():
-                        try:
-                            titulo = datos.get(
-                                "titulo",
-                                categoria
-                            )
-                            opciones = datos.get(
-                                "roles",
-                                {}
-                            )
-                            if not opciones:
-                                print(
-                                    f"⚠️ {categoria}: "
-                                    "no tiene roles."
-                                )
-                                continue
-                            view = RoleView(
-                                categoria,
-                                titulo,
-                                opciones
-                            )
-                            self.add_view(
-                                view
-                            )
-                            print(
-                                f"✅ View roles registrada: "
-                                f"{categoria}"
-                            )
-                        except Exception as error:
-                            print(
-                                f"❌ Error View "
-                                f"{categoria}: {error}"
-                            )
-                            traceback.print_exc()
-        except Exception as error:
+
+        from cogs.reactionroles import (
+            RoleView
+        )
+
+        roles_file = "data/roles.json"
+
+        if not os.path.exists(roles_file):
+
             print(
-                "❌ Error cargando views "
-                f"de roles: {error}"
+                "⚠️ data/roles.json no existe."
             )
-            traceback.print_exc()
-        print("")
-        print("=" * 70)
-        print("🎭 VIEWS PERSISTENTES CARGADAS")
-        print("=" * 70)
+
+        else:
+
+            with open(
+                roles_file,
+                "r",
+                encoding="utf-8"
+            ) as file:
+
+                roles_config = json.load(file)
+
+            guild_config = roles_config.get(
+                str(GUILD_ID),
+                {}
+            )
+
+            categorias = guild_config.get(
+                "categorias",
+                {}
+            )
+
+            if not categorias:
+
+                print(
+                    "⚠️ No hay categorías de roles configuradas."
+                )
+
+            else:
+
+                for categoria, datos in categorias.items():
+
+                    titulo = datos.get(
+                        "titulo",
+                        categoria
+                    )
+
+                    opciones = datos.get(
+                        "roles",
+                        {}
+                    )
+
+                    if not opciones:
+
+                        print(
+                            f"⚠️ {categoria}: "
+                            "sin roles configurados."
+                        )
+
+                        continue
+
+                    try:
+
+                        view = RoleView(
+                            categoria,
+                            titulo,
+                            opciones
+                        )
+
+                        self.add_view(
+                            view
+                        )
+
+                        print(
+                            f"✅ View persistente: "
+                            f"roles/{categoria}"
+                        )
+
+                    except Exception as error:
+
+                        print(
+                            f"❌ Error en "
+                            f"roles/{categoria}: "
+                            f"{type(error).__name__}: "
+                            f"{error}"
+                        )
+
+    except Exception as error:
+
+        print(
+            "❌ Error cargando Reaction Roles:"
+        )
+
+        print(
+            f"{type(error).__name__}: {error}"
+        )
+
+        traceback.print_exc()
+
+    print("")
+    print("=" * 70)
+    print("🎭 VIEWS PERSISTENTES CARGADAS")
+    print("=" * 70)
+```
     # ========================================================
     # MOSTRAR COMANDOS
     # ========================================================
