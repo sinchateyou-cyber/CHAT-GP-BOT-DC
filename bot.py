@@ -148,7 +148,6 @@ class MiBot(commands.Bot):
             "cogs.createrole",
             "cogs.deleterole",
 
-            "cogs.reactionroles",
 
             "cogs.canales",
             "cogs.bienvenida",
@@ -185,7 +184,8 @@ class MiBot(commands.Bot):
             "cogs.filtro",
             "cogs.mute",
             "cogs.interacciones",
-            "cogs.media_rol"
+            "cogs.media_rol",
+            "cogs.reactionroles"
         ]
 
         print("")
