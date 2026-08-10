@@ -107,14 +107,123 @@ class MiBot(commands.Bot):
 
         await self.load_persistent_views()
 
-        await self.show_loaded_commands()
+        async def load_persistent_views(self):
 
-        await self.sync_commands()
+    print("")
+    print("=" * 70)
+    print("🎭 CARGANDO VIEWS PERSISTENTES")
+    print("=" * 70)
 
-        print("")
-        print("=" * 70)
-        print("✅ SETUP COMPLETADO")
-        print("=" * 70)
+    # ========================================================
+    # TICKETS
+    # ========================================================
+
+    try:
+
+        from cogs.tickets import TicketView
+
+        self.add_view(
+            TicketView()
+        )
+
+        print(
+            "✅ View persistente: Tickets"
+        )
+
+    except Exception as error:
+
+        print(
+            f"❌ Error cargando Tickets: {error}"
+        )
+
+    # ========================================================
+    # REACTION ROLES
+    # ========================================================
+
+    try:
+
+        from cogs.reactionroles import RoleView
+
+        if not os.path.exists("data/roles.json"):
+
+            print(
+                "⚠️ data/roles.json no existe."
+            )
+
+            return
+
+        with open(
+            "data/roles.json",
+            "r",
+            encoding="utf-8"
+        ) as file:
+
+            roles_config = json.load(file)
+
+        # Tu JSON tiene:
+        #
+        # {
+        #   "1534290216418938891": {
+        #       "categorias": {...}
+        #   }
+        # }
+
+        guild_config = roles_config.get(
+            str(GUILD_ID),
+            {}
+        )
+
+        categorias = guild_config.get(
+            "categorias",
+            {}
+        )
+
+        for categoria, datos in categorias.items():
+
+            try:
+
+                titulo = datos.get(
+                    "titulo",
+                    categoria
+                )
+
+                opciones = datos.get(
+                    "roles",
+                    {}
+                )
+
+                if not opciones:
+                    continue
+
+                view = RoleView(
+                    categoria,
+                    titulo,
+                    opciones
+                )
+
+                self.add_view(view)
+
+                print(
+                    f"✅ View roles registrada: {categoria}"
+                )
+
+            except Exception as error:
+
+                print(
+                    f"❌ Error View {categoria}: {error}"
+                )
+
+    except Exception as error:
+
+        print(
+            f"⚠️ No se pudieron cargar "
+            f"las views de roles: {error}"
+        )
+
+    print("")
+    print("=" * 70)
+    print("🎭 VIEWS PERSISTENTES CARGADAS")
+    print("=" * 70)
 
     # ========================================================
     # CARGAR COGS
