@@ -9,7 +9,7 @@ from discord.ext import commands
 
 # ID DEL CANAL "media rol"
 # Poné acá el ID real de tu canal.
-MEDIA_CHANNEL_ID = 123456789012345678
+MEDIA_CHANNEL_ID = 1536366053268127784
 
 
 class Roles(commands.Cog):
