@@ -186,6 +186,7 @@ class MiBot(commands.Bot):
             "cogs.filtro",
             "cogs.mute",
             "cogs.interacciones",
+            "cogs.media_rol"
         ]
 
         print("")
