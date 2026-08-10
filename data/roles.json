@@ -1,0 +1,57 @@
+{
+  "categorias": {
+    "genero": {
+      "titulo": "👤 Género",
+      "descripcion": "Seleccioná tu género.",
+      "roles": {
+        "👨": "Hombre",
+        "👩": "Mujer",
+        "🧑": "Otro"
+      }
+    },
+    "pais": {
+      "titulo": "🌎 País",
+      "descripcion": "Seleccioná tu país.",
+      "roles": {
+        "🇦🇷": "Argentina",
+        "🇨🇱": "Chile",
+        "🇺🇾": "Uruguay",
+        "🇵🇾": "Paraguay",
+        "🇧🇷": "Brasil",
+        "🇲🇽": "México",
+        "🇪🇸": "España"
+      }
+    },
+    "dispositivo": {
+      "titulo": "💻 Dispositivo",
+      "descripcion": "¿Desde qué dispositivo usás Discord?",
+      "roles": {
+        "📱": "Celular",
+        "💻": "PC"
+      }
+    },
+    "edad": {
+      "titulo": "🎂 Edad",
+      "descripcion": "Seleccioná tu rango de edad.",
+      "roles": {
+        "🔵": "14-16",
+        "🟢": "16-18",
+        "🟣": "18-25"
+      }
+    },
+    "colores": {
+      "titulo": "🎨 Colores",
+      "descripcion": "Elegí tu color favorito.",
+      "roles": {
+        "🔴": "1534290741000405114",
+        "🟠": "1534290742397108404",
+        "🟡": "1534290743722770502",
+        "🟢": "1534290744721014804",
+        "🔵": "1534290745748492360",
+        "🟣": "1534290746717372426",
+        "⚫": "1534290747514163373",
+        "⚪": "1534290749263446076"
+      }
+    }
+  }
+}
