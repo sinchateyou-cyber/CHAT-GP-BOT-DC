@@ -860,7 +860,8 @@ class MiBot(commands.Bot):
             "cogs.say",
             "cogs.filtro",
             "cogs.tickets",
-            "cogs.mute"
+            "cogs.mute",
+            "cogs.interacciones"
         ]
 
 
