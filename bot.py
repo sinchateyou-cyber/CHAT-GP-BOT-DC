@@ -588,7 +588,7 @@ class MiBot(commands.Bot):
             "cogs.reglas",
             "cogs.configuracionall",
             "cogs.say",
-            "cogs.multimedia"
+            "cogs.filtro"
         ]
         cargados = 0
         errores = 0
