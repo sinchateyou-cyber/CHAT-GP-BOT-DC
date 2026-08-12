@@ -202,12 +202,9 @@ class MiBot(commands.Bot):
             "cogs.config",
             "cogs.addemoji",
 
-            "cogs.social",
             "cogs.key",
             "cogs.status",
 
-            "cogs.stop",
-            "cogs.leave",
 
             "cogs.reglas",
             "cogs.say",
