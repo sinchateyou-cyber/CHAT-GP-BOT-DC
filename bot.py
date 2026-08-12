@@ -216,6 +216,7 @@ class MiBot(commands.Bot):
 
             "cogs.mute",
             "cogs.interacciones",
+            "cogs.voice_creator",
 
             # =================================================
             # MEDIA ROLE
