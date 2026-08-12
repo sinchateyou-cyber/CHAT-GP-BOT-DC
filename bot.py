@@ -138,7 +138,6 @@ class MiBot(commands.Bot):
             "cogs.social",
             "cogs.key",
             "cogs.status",
-            "cogs.play",
             "cogs.stop",
             "cogs.leave",
             "cogs.reglas",
