@@ -188,7 +188,6 @@ class MiBot(commands.Bot):
             "cogs.bienvenida",
             "cogs.logs",
 
-            "cogs.verification",
             "cogs.server_setup",
 
             "cogs.help",
@@ -218,6 +217,7 @@ class MiBot(commands.Bot):
             "cogs.interacciones",
             "cogs.voice_creator",
             "cogs.maintenance",
+            "cogs.verification",
 
             # =================================================
             # MEDIA ROLE
