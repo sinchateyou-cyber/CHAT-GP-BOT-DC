@@ -108,7 +108,7 @@ class MiBot(commands.Bot):
     def __init__(self):
 
         super().__init__(
-            command_prefix="s",
+            command_prefix="s!",
             intents=intents,
             help_command=None
         )
