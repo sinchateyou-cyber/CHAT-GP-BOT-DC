@@ -41,6 +41,9 @@ PALABRAS_PROHIBIDAS = {
     "idiota",
     "imbecil",
     "imbécil",
+    "pija",
+    "chupala",
+    "gorda",
 }
 
 
@@ -205,7 +208,7 @@ class Filtro(commands.Cog):
                 title="⚠️ Mensaje eliminado",
                 description=(
                     "Tu mensaje fue eliminado automáticamente "
-                    "porque contenía lenguaje no permitido."
+                    "porque contenía lenguaje no permitido, la proxima vez serás warneado"
                 ),
                 color=discord.Color.red()
             )
