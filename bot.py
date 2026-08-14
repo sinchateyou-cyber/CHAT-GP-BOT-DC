@@ -246,7 +246,6 @@ class MiBot(commands.Bot):
 
             "cogs.reglas",
             "cogs.say",
-            "cogs.filtro",
 
             "cogs.mute",
             "cogs.interacciones",
