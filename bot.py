@@ -274,6 +274,7 @@ class MiBot(commands.Bot):
 
             "cogs.reactionroles",
             "cogs.edad",
+            "cogs.roles_decorativos",
 
             # ------------------------------------------------
             # TICKETS
