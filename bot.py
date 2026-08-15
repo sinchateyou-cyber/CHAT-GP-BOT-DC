@@ -280,6 +280,7 @@ class MiBot(commands.Bot):
             "cogs.conteo",
             "cogs.genai",
             "cogs.utilidades",
+            "cogs.steam",
 
             # ------------------------------------------------
             # TICKETS
