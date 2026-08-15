@@ -282,6 +282,7 @@ class MiBot(commands.Bot):
             "cogs.utilidades",
             "cogs.steam",
             "cogs.apuestas",
+            "cogs.robo",
 
             # ------------------------------------------------
             # TICKETS
