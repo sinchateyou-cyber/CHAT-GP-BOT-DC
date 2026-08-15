@@ -194,8 +194,6 @@ class MiBot(commands.Bot):
             "cogs.afk",
             "cogs.avatar",
             "cogs.nick",
-            "cogs.genai",
-            "cogs.conteo",
             "cogs.utilidades",
 
             # ------------------------------------------------
@@ -279,6 +277,9 @@ class MiBot(commands.Bot):
             "cogs.reactionroles",
             "cogs.edad",
             "cogs.roles_decorativos",
+            "cogs.conteo",
+            "cogs.genai",
+            "cogs.utilidades",
 
             # ------------------------------------------------
             # TICKETS
