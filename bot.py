@@ -281,6 +281,7 @@ class MiBot(commands.Bot):
             "cogs.genai",
             "cogs.utilidades",
             "cogs.steam",
+            "cogs.apuestas",
 
             # ------------------------------------------------
             # TICKETS
