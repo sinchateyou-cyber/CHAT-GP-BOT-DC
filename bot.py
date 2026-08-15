@@ -249,7 +249,7 @@ class MiBot(commands.Bot):
             "cogs.say",
 
             "cogs.mute",
-            "cogs.interacciones",
+            "cogs.animaciones",
 
             # ------------------------------------------------
             # VOICE CREATOR
