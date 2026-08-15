@@ -194,7 +194,7 @@ class MiBot(commands.Bot):
             "cogs.afk",
             "cogs.avatar",
             "cogs.nick",
-            "cogs.utilidades",
+            "cogs.genai",
 
             # ------------------------------------------------
             # ROLES
