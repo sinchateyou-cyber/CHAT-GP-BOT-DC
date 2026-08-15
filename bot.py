@@ -251,6 +251,7 @@ class MiBot(commands.Bot):
             "cogs.mute",
             "cogs.animaciones",
             "cogs.spotify",
+            "cogs.economia",
 
             # ------------------------------------------------
             # VOICE CREATOR
