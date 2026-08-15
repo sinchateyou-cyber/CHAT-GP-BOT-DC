@@ -21,31 +21,7 @@ class Utilidades(commands.Cog):
         await interaction.response.send_message(
             f"🏓 Pong! `{ms}ms`"
         )
-    # =========================
-    # AVATAR
-    # =========================
-    @app_commands.command(
-        name="avatar",
-        description="Muestra el avatar de un usuario."
-    )
-    @app_commands.describe(
-        miembro="Usuario del que querés ver el avatar."
-    )
-    async def avatar(
-        self,
-        interaction: discord.Interaction,
-        miembro: discord.Member = None
-    ):
-        miembro = miembro or interaction.user
-        embed = discord.Embed(
-            title=f"🖼️ Avatar de {miembro}"
-        )
-        embed.set_image(
-            url=miembro.display_avatar.url
-        )
-        await interaction.response.send_message(
-            embed=embed
-        )
+  
     # =========================
     # USERINFO
     # =========================
