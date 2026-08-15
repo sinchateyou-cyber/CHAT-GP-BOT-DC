@@ -196,6 +196,7 @@ class MiBot(commands.Bot):
             "cogs.nick",
             "cogs.genai",
             "cogs.conteo",
+            "cogs.utilidades",
 
             # ------------------------------------------------
             # ROLES
