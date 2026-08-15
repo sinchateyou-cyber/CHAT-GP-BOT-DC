@@ -598,7 +598,7 @@ class GenAI(commands.Cog):
         # RESPUESTAS SIMPLES
         # ----------------------------------------------------
         responses = [
-            "jajajaj q decís 😭",
+            "jajajaj q decís",
             "naaa amigo",
             "💀",
             "JAJAJAJA",
@@ -618,6 +618,9 @@ class GenAI(commands.Cog):
             "re sí",
             "ni en pedo",
             "daleee",
+            "a tu jermu",
+            "la gordita esa?",
+            "te toqué"
         ]
         # ----------------------------------------------------
         # RESPUESTA
