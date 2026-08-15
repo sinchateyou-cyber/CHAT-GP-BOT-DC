@@ -248,7 +248,7 @@ class MiBot(commands.Bot):
             "cogs.say",
 
             "cogs.mute",
-            "cogs.animaciones",
+            "cogs.acciones",
             "cogs.spotify",
             "cogs.economia",
 
