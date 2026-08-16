@@ -285,6 +285,7 @@ class MiBot(commands.Bot):
             "cogs.robo",
             "cogs.aliases",
             "cogs.prefix",
+            "cogs.addmoney",
 
             # ------------------------------------------------
             # TICKETS
