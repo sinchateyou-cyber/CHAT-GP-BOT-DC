@@ -84,12 +84,10 @@ intents.voice_states = True
 # ============================================================
 # COMMAND TREE PERSONALIZADO
 #
+# Todos los slash commands se registran en TU SERVIDOR.
+#
 # IMPORTANTE:
-#
-# Todos los slash commands se registran directamente
-# en TU servidor.
-#
-# Así evitamos el límite global de 100 comandos.
+# No pasar guild y guilds juntos a discord.py.
 # ============================================================
 
 class ServerCommandTree(app_commands.CommandTree):
@@ -103,18 +101,48 @@ class ServerCommandTree(app_commands.CommandTree):
         override=False
     ):
         """
-        Fuerza los comandos de aplicación al servidor
-        principal cuando no se especifica otro guild.
+        Registra los comandos en el servidor principal
+        cuando el comando no especifica un servidor.
+
+        Compatible con:
+        - comandos normales
+        - hybrid_command
+        - comandos con guild=
+        - comandos con guilds=
         """
 
-        if guild is None and not guilds:
+        # ----------------------------------------------------
+        # Si el comando ya especificó guilds=
+        # ----------------------------------------------------
 
-            guild = GUILD_OBJECT
+        if guilds:
+
+            return super().add_command(
+                command,
+                guilds=guilds,
+                override=override
+            )
+
+        # ----------------------------------------------------
+        # Si el comando ya especificó guild=
+        # ----------------------------------------------------
+
+        if guild is not None:
+
+            return super().add_command(
+                command,
+                guild=guild,
+                override=override
+            )
+
+        # ----------------------------------------------------
+        # Si no especificó ningún servidor,
+        # lo mandamos a TU servidor.
+        # ----------------------------------------------------
 
         return super().add_command(
             command,
-            guild=guild,
-            guilds=guilds,
+            guild=GUILD_OBJECT,
             override=override
         )
 
