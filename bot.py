@@ -286,7 +286,7 @@ class MiBot(commands.Bot):
             "cogs.aliases",
             "cogs.prefix",
             "cogs.addmoney",
-            "cogs.bloquear_verificado",
+            "cogs.bloqueo_verificado",
 
             # ------------------------------------------------
             # TICKETS
