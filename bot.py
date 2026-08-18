@@ -181,7 +181,6 @@ class MiBot(commands.Bot):
             # UTILIDADES
             # =================================================
 
-            "cogs.afk",
             "cogs.avatar",
             "cogs.nick",
             "cogs.utilidades",
@@ -235,8 +234,6 @@ class MiBot(commands.Bot):
             # =================================================
 
             "cogs.say",
-            "cogs.mute",
-            "cogs.acciones",
             "cogs.spotify",
 
             # =================================================
@@ -253,11 +250,6 @@ class MiBot(commands.Bot):
 
             "cogs.voice_creator",
 
-            # =================================================
-            # VERIFICACIÓN
-            # =================================================
-
-            "cogs.verification",
 
             # =================================================
             # MEDIA ROLE
