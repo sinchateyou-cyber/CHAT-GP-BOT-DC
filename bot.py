@@ -198,7 +198,6 @@ class MiBot(commands.Bot):
             # =================================================
 
             "cogs.canales",
-            "cogs.bienvenida",
             "cogs.logs",
             "cogs.server_setup",
             "cogs.reglas",
@@ -226,7 +225,6 @@ class MiBot(commands.Bot):
             "cogs.botinfo",
             "cogs.config",
             "cogs.addemoji",
-            "cogs.key",
             "cogs.status",
 
             # =================================================
@@ -261,8 +259,6 @@ class MiBot(commands.Bot):
             # REACTION ROLES
             # =================================================
 
-            "cogs.reactionroles",
-            "cogs.edad",
             "cogs.roles_decorativos",
 
             # =================================================
