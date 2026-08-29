@@ -192,6 +192,8 @@ class MiBot(commands.Bot):
             "cogs.addrole",
             "cogs.createrole",
             "cogs.deleterole",
+            "cogs.role_permissions",
+
 
             # =================================================
             # CANALES / SERVIDOR
