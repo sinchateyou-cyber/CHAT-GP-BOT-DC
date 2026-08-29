@@ -1,5 +1,7 @@
+import re
 import aiohttp
 import discord
+from discord import app_commands
 from discord.ext import commands
 
 
@@ -7,68 +9,95 @@ class IconRol(commands.Cog):
     def __init__(self, bot: commands.Bot):
         self.bot = bot
 
-    @commands.command(name="iconrol", aliases=["setroleicon", "icono_rol"])
-    @commands.has_permissions(manage_roles=True)
-    @commands.bot_has_permissions(manage_roles=True)
-    async def iconrol(self, ctx: commands.Context, role: discord.Role, url: str = None):
-        """Cambia el icono de un rol mediante una URL o imagen adjunta.
-        
-        Uso:
-            s!iconrol @Rol https://link.com/imagen.png
-            s!iconrol @Rol (con una imagen adjunta)
-        """
-        image_bytes = None
+    @app_commands.command(
+        name="setroleicon",
+        description="Cambia el icono de un rol usando un emoji estándar o personalizado."
+    )
+    @app_commands.describe(
+        rol="El rol al que deseas cambiarle el icono.",
+        emoji="El emoji que deseas asignar como icono (ej: 👑 o un emoji personalizado)."
+    )
+    @app_commands.checks.has_permissions(manage_roles=True)
+    async def set_role_icon(
+        self, 
+        interaction: discord.Interaction, 
+        rol: discord.Role, 
+        emoji: str
+    ):
+        await interaction.response.defer()
 
-        # 1. Verificar si hay un archivo adjunto en el mensaje
-        if ctx.message.attachments:
-            image_bytes = await ctx.message.attachments[0].read()
-
-        # 2. Si no hay archivo adjunto, intentar descargar desde la URL
-        elif url:
-            try:
-                async with aiohttp.ClientSession() as session:
-                    async with session.get(url, timeout=10) as response:
-                        if response.status == 200:
-                            image_bytes = await response.read()
-                        else:
-                            await ctx.send(
-                                "❌ No se pudo descargar la imagen. Verifica que la URL sea válida.",
-                                delete_after=10
-                            )
-                            return
-            except Exception as e:
-                await ctx.send(
-                    f"❌ Error al intentar conectar con la URL: {e}",
-                    delete_after=10
-                )
-                return
-        else:
-            await ctx.send(
-                "❌ Debes adjuntar una imagen al mensaje o indicar una URL válida.",
-                delete_after=10
+        # 1. Verificar si el servidor soporta iconos en los roles (Requiere Nivel 2 de Boost)
+        if "ROLE_ICONS" not in interaction.guild.features:
+            await interaction.followup.send(
+                "❌ Este servidor necesita **Nivel 2 de Server Boost** para poder usar iconos en los roles.",
+                ephemeral=True
             )
             return
 
-        # 3. Aplicar el icono al rol en Discord
+        # 2. Expresión regular para detectar si es un emoji personalizado (<:nombre:id> o <a:nombre:id>)
+        custom_emoji_regex = r"<a?:(?P<name>\w+):(?P<id>\d+)>"
+        match = re.match(custom_emoji_regex, emoji.strip())
+
         try:
-            await role.edit(
-                display_icon=image_bytes,
-                reason=f"Icono modificado por {ctx.author} ({ctx.author.id})"
+            if match:
+                # Si es un emoji personalizado, se descarga su imagen desde la CDN de Discord
+                emoji_id = match.group("id")
+                image_url = f"https://cdn.discordapp.com/emojis/{emoji_id}.png"
+
+                async with aiohttp.ClientSession() as session:
+                    async with session.get(image_url) as response:
+                        if response.status != 200:
+                            await interaction.followup.send(
+                                "❌ No se pudo descargar la imagen del emoji personalizado.",
+                                ephemeral=True
+                            )
+                            return
+                        image_data = await response.read()
+
+                await rol.edit(display_icon=image_data)
+
+            else:
+                # Si es un emoji unicode (ejemplo: 👑, 🔥, 🚀)
+                try:
+                    await rol.edit(display_icon=emoji.strip())
+                except discord.HTTPException:
+                    # En caso de que se haya enviado texto plano que no sea un emoji válido
+                    await interaction.followup.send(
+                        "❌ El emoji ingresado no es válido. Asegúrate de enviar un emoji Unicode o uno de Discord.",
+                        ephemeral=True
+                    )
+                    return
+
+            # Crear embed de confirmación
+            embed = discord.Embed(
+                title="✅ Icono de rol actualizado",
+                description=f"El icono del rol {rol.mention} ha sido actualizado correctamente.",
+                color=discord.Color.green()
             )
-            await ctx.send(
-                f"✅ El icono del rol **{role.name}** se ha actualizado correctamente."
-            )
+            
+            if match:
+                embed.set_thumbnail(url=f"https://cdn.discordapp.com/emojis/{match.group('id')}.png")
+
+            await interaction.followup.send(embed=embed)
 
         except discord.Forbidden:
-            await ctx.send(
-                "❌ No tengo permisos suficientes para editar este rol. Asegúrate de que el rol del bot esté por encima del rol a modificar.",
-                delete_after=10
+            await interaction.followup.send(
+                "❌ No tengo permisos suficientes. Asegúrate de que mi rol esté por encima del rol que intentas editar.",
+                ephemeral=True
+            )
+        except Exception as e:
+            await interaction.followup.send(
+                f"❌ Ocurrió un error insospechado al actualizar el rol: `{e}`",
+                ephemeral=True
             )
 
-        except discord.HTTPException as error:
-            await ctx.send(
-                f"❌ Error de Discord: {error.text}\n*(Recuerda que el servidor necesita tener **Nivel 2 de Boost** para usar iconos de roles)*",
-                delete_after=12
+    # Manejo de errores para cuando el usuario no tiene permisos
+    @set_role_icon.error
+    async def set_role_icon_error(self, interaction: discord.Interaction, error: app_commands.AppCommandError):
+        if isinstance(error, app_commands.MissingPermissions):
+            await interaction.response.send_message(
+                "❌ No tienes el permiso de **Gestionar Roles** para usar este comando.",
+                ephemeral=True
             )
 
 
