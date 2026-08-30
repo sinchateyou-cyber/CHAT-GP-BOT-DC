@@ -195,6 +195,7 @@ class MiBot(commands.Bot):
             "cogs.role_permissions",
             "cogs.reactionroles",
             "cogs.customroles",
+            "cogs.alliances",
 
 
             # =================================================
@@ -276,14 +277,12 @@ class MiBot(commands.Bot):
             "cogs.robo",
             "cogs.aliases",
             "cogs.fm",
-            "cogs.roles_decorativos",
 
             # =================================================
             # TICKETS
             # =================================================
 
-            "cogs.tickets",
-            "cogs.alliances"
+            "cogs.tickets"
         ]
 
         print("")
