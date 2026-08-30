@@ -211,6 +211,7 @@ class MiBot(commands.Bot):
             "cogs.logs",
             "cogs.server_setup",
             "cogs.reglas",
+            "cogs.confesiones",
 
             # =================================================
             # AYUDA / OWNER
@@ -275,11 +276,11 @@ class MiBot(commands.Bot):
             # OTROS SISTEMAS
             # =================================================
 
-            "cogs.genai",
             "cogs.steam",
             "cogs.robo",
             "cogs.aliases",
             "cogs.fm",
+            "cogs.ia",
 
             # =================================================
             # TICKETS
