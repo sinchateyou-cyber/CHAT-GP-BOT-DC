@@ -283,6 +283,7 @@ class MiBot(commands.Bot):
             # =================================================
 
             "cogs.tickets",
+            "cogs.alliances"
         ]
 
         print("")
