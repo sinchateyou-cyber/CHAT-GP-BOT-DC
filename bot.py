@@ -263,7 +263,6 @@ class MiBot(commands.Bot):
             # REACTION ROLES
             # =================================================
 
-            "cogs.roles_decorativos",
             "cogs.iconrol",
 
             # =================================================
@@ -275,6 +274,7 @@ class MiBot(commands.Bot):
             "cogs.robo",
             "cogs.aliases",
             "cogs.fm",
+            "cogs.roles_decorativos",
 
             # =================================================
             # TICKETS
