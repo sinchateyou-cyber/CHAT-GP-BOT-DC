@@ -274,6 +274,7 @@ class MiBot(commands.Bot):
             "cogs.steam",
             "cogs.robo",
             "cogs.aliases",
+            "cogs.fm",
 
             # =================================================
             # TICKETS
