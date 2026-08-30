@@ -878,26 +878,25 @@ class GenAI(commands.Cog):
 
         responses = [
 
-            "jajajaj q decís",
-            "naaa amigo",
-            "💀",
-            "JAJAJAJA",
-            "literal",
-            "real",
-            "banco",
-            "????",
-            "no puede ser",
-            "ahre",
-            "jsjsjs",
-            "qué",
-            "me tenté",
-            "bro",
-            "💀💀💀",
-            "facts",
-            "mal",
-            "re sí",
-            "ni en pedo",
-            "daleee"
+            "que onda la concha d su madre",
+            "si vos no peleas mas q yo gil",
+            "toma, aca tenes esta",
+            "pareces puta todo el dia pidiendo verga",
+            "hola amores",
+            "que chota queres?",
+            "me amas?",
+            "yo te amo🥰",
+            "te waskeo toda la carita y q decis?",
+            "al de abajo lo cojo todo sin ganas",
+            "valen q rico garchas",
+            "perdon",
+            "este server verga",
+            "me agregan y no soy un bot, si existo",
+            "mi chele puta",
+            "alto moño",
+            "arrodillate a chupala",
+            "mentira gato, no te enojes ey"
+        
 
         ]
 
