@@ -177,6 +177,7 @@ class MiBot(commands.Bot):
             "cogs.antilink",
             "cogs.antiflood",
             "cogs.antispam",
+            "cogs.decir",
 
             # =================================================
             # UTILIDADES
