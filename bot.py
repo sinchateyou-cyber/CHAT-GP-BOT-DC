@@ -194,6 +194,7 @@ class MiBot(commands.Bot):
             "cogs.deleterole",
             "cogs.role_permissions",
             "cogs.reactionroles",
+            "cogs.customroles",
 
 
             # =================================================
