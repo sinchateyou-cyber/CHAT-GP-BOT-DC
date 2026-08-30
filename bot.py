@@ -201,6 +201,7 @@ class MiBot(commands.Bot):
             # =================================================
 
             "cogs.alliances",
+            "cogs.imagenes",
 
             # =================================================
             # CANALES / SERVIDOR
@@ -279,7 +280,6 @@ class MiBot(commands.Bot):
             "cogs.robo",
             "cogs.aliases",
             "cogs.fm",
-            "cogs.decir",
 
             # =================================================
             # TICKETS
