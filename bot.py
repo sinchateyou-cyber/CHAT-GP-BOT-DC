@@ -201,6 +201,7 @@ class MiBot(commands.Bot):
             # =================================================
 
             "cogs.alliances",
+            "cogs.permisos_alianzas",
 
             # =================================================
             # CANALES / SERVIDOR
