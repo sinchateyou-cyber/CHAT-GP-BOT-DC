@@ -176,7 +176,6 @@ class MiBot(commands.Bot):
             "cogs.antilink",
             "cogs.antiflood",
             "cogs.antispam",
-            "cogs.decir",
 
             # =================================================
             # UTILIDADES
@@ -280,6 +279,7 @@ class MiBot(commands.Bot):
             "cogs.robo",
             "cogs.aliases",
             "cogs.fm",
+            "cogs.decir",
 
             # =================================================
             # TICKETS
