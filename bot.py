@@ -203,6 +203,8 @@ class MiBot(commands.Bot):
             "cogs.alliances",
             "cogs.permisos_alianza",
             "cogs.canal_confesiones",
+            "cogs.privatechannel",
+            "cogs.imagenes",
 
             # =================================================
             # CANALES / SERVIDOR
@@ -289,11 +291,6 @@ class MiBot(commands.Bot):
 
             "cogs.tickets",
             
-            # =================================================
-            # imagenes
-            # =================================================
-
-            "cogs.imagenes"
         ]
 
         print("")
