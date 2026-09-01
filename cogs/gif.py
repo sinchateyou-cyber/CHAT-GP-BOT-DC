@@ -1,6 +1,5 @@
-```python
-import io
 
+import io
 import discord
 from discord.ext import commands
 from discord import app_commands
@@ -268,4 +267,3 @@ async def setup(bot):
     await bot.add_cog(
         Gif(bot)
     )
-```
