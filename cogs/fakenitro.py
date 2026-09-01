@@ -1,4 +1,3 @@
-````python
 import random
 import string
 
@@ -160,4 +159,3 @@ async def setup(bot):
     await bot.add_cog(
         FakeNitro(bot)
     )
-````
