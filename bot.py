@@ -168,7 +168,6 @@ class MiBot(commands.Bot):
             "cogs.timeout",
             "cogs.untimeout",
             "cogs.clear",
-            "cogs.vcstats",
             "cogs.instagram",
 
             # =================================================
@@ -289,6 +288,7 @@ class MiBot(commands.Bot):
             "cogs.aliases",
             "cogs.fm",
             "cogs.ia",
+            "cogs.vcstats",
 
             # =================================================
             # TICKETS
