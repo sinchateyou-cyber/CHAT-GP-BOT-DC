@@ -170,6 +170,7 @@ class MiBot(commands.Bot):
             "cogs.clear",
             "cogs.instagram",
             "cogs.pinterest",
+            "cogs.fakenitro",
 
             # =================================================
             # SEGURIDAD
