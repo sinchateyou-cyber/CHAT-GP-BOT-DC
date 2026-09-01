@@ -183,6 +183,7 @@ class MiBot(commands.Bot):
             "cogs.invitacion",
             "cogs.valenolleka",
             "cogs.valenstats",
+            "cogs.estado_space",
 
             # =================================================
             # UTILIDADES
