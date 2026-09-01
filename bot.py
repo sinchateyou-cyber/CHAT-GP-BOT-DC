@@ -177,6 +177,7 @@ class MiBot(commands.Bot):
             "cogs.antiflood",
             "cogs.antispam",
             "cogs.md",
+            "cogs.invitacion",
 
             # =================================================
             # UTILIDADES
