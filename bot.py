@@ -170,7 +170,6 @@ class MiBot(commands.Bot):
             "cogs.clear",
             "cogs.instagram",
             "cogs.pinterest",
-            "cogs.fakenitro",
             "cogs.gif",
             "cogs.eco",
 
@@ -285,7 +284,6 @@ class MiBot(commands.Bot):
             # OTROS SISTEMAS
             # =================================================
 
-            "cogs.steam",
             "cogs.robo",
             "cogs.aliases",
             "cogs.fm",
