@@ -169,6 +169,7 @@ class MiBot(commands.Bot):
             "cogs.untimeout",
             "cogs.clear",
             "cogs.instagram",
+            "cogs.pinterest",
 
             # =================================================
             # SEGURIDAD
