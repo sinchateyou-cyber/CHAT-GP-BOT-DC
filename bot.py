@@ -180,6 +180,7 @@ class MiBot(commands.Bot):
             "cogs.md",
             "cogs.invitacion",
             "cogs.valenolleka",
+            "cogs.valenstats",
 
             # =================================================
             # UTILIDADES
