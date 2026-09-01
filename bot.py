@@ -168,6 +168,7 @@ class MiBot(commands.Bot):
             "cogs.timeout",
             "cogs.untimeout",
             "cogs.clear",
+            "cogs.vcstats",
 
             # =================================================
             # SEGURIDAD
