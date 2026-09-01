@@ -1,6 +1,3 @@
-```python
-# cogs/panelstats.py
-
 import sqlite3
 from pathlib import Path
 from datetime import datetime, timezone
@@ -323,4 +320,3 @@ async def setup(bot):
     await bot.add_cog(
         PanelStats(bot)
     )
-```
