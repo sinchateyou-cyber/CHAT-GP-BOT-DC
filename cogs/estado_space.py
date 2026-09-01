@@ -1,4 +1,3 @@
-```python
 import json
 from pathlib import Path
 
@@ -357,4 +356,3 @@ async def setup(bot):
     await bot.add_cog(
         EstadoSpace(bot)
     )
-```
