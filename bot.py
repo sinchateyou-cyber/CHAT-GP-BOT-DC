@@ -178,13 +178,9 @@ class MiBot(commands.Bot):
             # SEGURIDAD
             # =================================================
 
-            "cogs.antilink",
-            "cogs.antiflood",
-            "cogs.antispam",
             "cogs.md",
             "cogs.invitacion",
             "cogs.valenolleka",
-            "cogs.valenstats",
             "cogs.estado_space",
 
             # =================================================
@@ -193,7 +189,6 @@ class MiBot(commands.Bot):
 
             "cogs.avatar",
             "cogs.nick",
-            "cogs.utilidades",
 
             # =================================================
             # ROLES
@@ -294,8 +289,6 @@ class MiBot(commands.Bot):
             "cogs.robo",
             "cogs.aliases",
             "cogs.fm",
-            "cogs.ia",
-            "cogs.vcstats",
 
             # =================================================
             # TICKETS
