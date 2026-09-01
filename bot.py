@@ -179,6 +179,7 @@ class MiBot(commands.Bot):
             "cogs.antispam",
             "cogs.md",
             "cogs.invitacion",
+            "cogs.valenolleka",
 
             # =================================================
             # UTILIDADES
