@@ -1,4 +1,4 @@
-```python
+
 # cogs/vcstats.py
 
 import sqlite3
@@ -922,4 +922,3 @@ async def setup(bot):
     await bot.add_cog(
         VCStats(bot)
     )
-```
