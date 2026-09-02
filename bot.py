@@ -173,6 +173,7 @@ class MiBot(commands.Bot):
             "cogs.pinterest",
             "cogs.gif",
             "cogs.eco",
+            "cogs.gifcopy",
 
             # =================================================
             # SEGURIDAD
