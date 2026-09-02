@@ -1,5 +1,3 @@
-# cogs/gifcopy.py
-
 import io
 import discord
 import aiohttp
