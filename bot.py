@@ -163,6 +163,7 @@ class MiBot(commands.Bot):
 
             "cogs.lock",
             "cogs.vcstats",
+            "cogs.copy",
             "cogs.unlock",
             "cogs.ban",
             "cogs.kick",
