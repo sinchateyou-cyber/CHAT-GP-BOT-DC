@@ -3,6 +3,7 @@ name = "chat-gp-bot-dashboard"
 version = "1.0.0"
 requires-python = ">=3.12"
 dependencies = [
+    "discord.py==2.6.3",
     "flask",
     "requests",
     "python-dotenv"
