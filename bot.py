@@ -164,11 +164,6 @@ class MiBot(commands.Bot):
             "cogs.lock",
             "cogs.vcstats",
             "cogs.copy",
-            "cogs.unlock",
-            "cogs.ban",
-            "cogs.kick",
-            "cogs.timeout",
-            "cogs.untimeout",
             "cogs.clear",
             "cogs.instagram",
             "cogs.pinterest",
@@ -291,7 +286,7 @@ class MiBot(commands.Bot):
 
             "cogs.robo",
             "cogs.aliases",
-            "cogs.fm",
+            "cogs.clonador",
 
             # =================================================
             # TICKETS
