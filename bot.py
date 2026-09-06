@@ -162,6 +162,7 @@ class MiBot(commands.Bot):
             # =================================================
 
             "cogs.lock",
+            "cogs.botinvite",
             "cogs.vcstats",
             "cogs.copy",
             "cogs.clear",
