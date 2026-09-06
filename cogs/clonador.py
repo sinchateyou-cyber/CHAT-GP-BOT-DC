@@ -7,7 +7,7 @@ from discord import app_commands
 # ============================================================
 # Poné acá tu ID de usuario de Discord.
 # Solo este usuario podrá utilizar /clonar.
-OWNER_ID = 123456789012345678
+OWNER_ID = 831357614267957279
 # Cantidad de elementos que se procesan antes de una pequeña pausa.
 # Esto ayuda a evitar golpear los rate limits de Discord.
 BATCH_SIZE = 5
