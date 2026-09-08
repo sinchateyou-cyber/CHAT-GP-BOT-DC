@@ -316,6 +316,7 @@ class MiBot(commands.Bot):
             "cogs.canalpermitido",
             "cogs.bienvenida",
             "cogs.stats",
+            "cogs.estado_space",
 
             # =================================================
             # SEGURIDAD
