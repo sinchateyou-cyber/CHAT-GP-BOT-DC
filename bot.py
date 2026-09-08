@@ -162,6 +162,7 @@ class MiBot(commands.Bot):
             # =================================================
 
             "cogs.lock",
+            "cogs.borrarcanales",
             "cogs.casamiento",
             "cogs.botinvite",
             "cogs.vcstats",
