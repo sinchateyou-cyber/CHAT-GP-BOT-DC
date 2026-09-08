@@ -1,4 +1,4 @@
-🤖 Fire Nation Bot
+🤖 SPACE BOT
 
 Un bot de Discord moderno, completo y diseñado para la administración y gestión de servidores.
 
