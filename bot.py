@@ -197,7 +197,6 @@ class MiBot(commands.Bot):
             # =================================================
 
             "cogs.addrole",
-            "cogs.borrarcanales",
             "cogs.createrole",
             "cogs.deleterole",
             "cogs.role_permissions",
@@ -289,6 +288,7 @@ class MiBot(commands.Bot):
             "cogs.robo",
             "cogs.aliases",
             "cogs.clonador",
+            "cogs.borrarcanales",
 
             # =================================================
             # TICKETS
