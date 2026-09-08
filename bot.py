@@ -288,7 +288,6 @@ class MiBot(commands.Bot):
             "cogs.robo",
             "cogs.aliases",
             "cogs.clonador",
-            "cogs.borrarcanales",
 
             # =================================================
             # TICKETS
