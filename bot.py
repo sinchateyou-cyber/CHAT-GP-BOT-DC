@@ -213,7 +213,6 @@ class MiBot(commands.Bot):
             "cogs.canal_confesiones",
             "cogs.privatechannel",
             "cogs.imagenes",
-            "cogs.truco",
 
             # =================================================
             # CANALES / SERVIDOR
@@ -254,7 +253,6 @@ class MiBot(commands.Bot):
             # OTROS
             # =================================================
 
-            "cogs.say",
             "cogs.spotify",
 
             # =================================================
