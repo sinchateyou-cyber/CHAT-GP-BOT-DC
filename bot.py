@@ -174,6 +174,7 @@ class MiBot(commands.Bot):
             "cogs.gifcopy",
             "cogs.canalpermitido",
             "cogs.bienvenida",
+            "cogs.stats",
 
             # =================================================
             # SEGURIDAD
