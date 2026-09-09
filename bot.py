@@ -211,8 +211,10 @@ class MiBot(commands.Bot):
             # MODERACIÓN
             # =================================================
             "cogs.lock",
+            "cogs.iconroles",
             "cogs.borrarcanales",
             "cogs.casamiento",
+            "cogs.custom_roles",
             "cogs.botinvite",
             "cogs.vcstats",
             "cogs.copy",
@@ -244,14 +246,10 @@ class MiBot(commands.Bot):
             "cogs.createrole",
             "cogs.deleterole",
             "cogs.role_permissions",
-            "cogs.reactionroles",
-            "cogs.customroles",
             # =================================================
             # ALIANZAS
             # =================================================
-            "cogs.alliances",
             "cogs.canal_confesiones",
-            "cogs.privatechannel",
             "cogs.imagenes",
             # =================================================
             # CANALES / SERVIDOR
@@ -302,11 +300,9 @@ class MiBot(commands.Bot):
             # =================================================
             # ICON ROLE
             # =================================================
-            "cogs.iconrol",
             # =================================================
             # OTROS SISTEMAS
             # =================================================
-            "cogs.clonador",
             # =================================================
             # TICKETS
             # =================================================
