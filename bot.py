@@ -378,7 +378,6 @@ class MiBot(commands.Bot):
 
             "cogs.md",
             "cogs.invitacion",
-            "cogs.valenolleka",
 
             # =================================================
             # UTILIDADES
@@ -403,7 +402,6 @@ class MiBot(commands.Bot):
             # =================================================
 
             "cogs.alliances",
-            "cogs.permisos_alianza",
             "cogs.canal_confesiones",
             "cogs.privatechannel",
             "cogs.imagenes",
@@ -480,8 +478,6 @@ class MiBot(commands.Bot):
             # OTROS SISTEMAS
             # =================================================
 
-            "cogs.robo",
-            "cogs.aliases",
             "cogs.clonador",
 
             # =================================================
