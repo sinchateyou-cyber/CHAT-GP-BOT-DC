@@ -214,7 +214,7 @@ class MiBot(commands.Bot):
             "cogs.iconroles",
             "cogs.borrarcanales",
             "cogs.casamiento",
-            "cogs.custom_roles",
+            "cogs.customroles",
             "cogs.botinvite",
             "cogs.vcstats",
             "cogs.copy",
